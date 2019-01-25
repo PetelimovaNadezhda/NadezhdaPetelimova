@@ -1,5 +1,6 @@
 package hw1;
 
+import base.SeleniumBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -9,7 +10,7 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class EpamSiteTest {
+public class EpamSiteTest extends SeleniumBase {
 
     @Test
     public void testEpamJdiPage() {
