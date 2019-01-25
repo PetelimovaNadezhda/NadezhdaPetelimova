@@ -1,0 +1,23 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="TestNg Suite" verbose="1" parallel="methods" thread-count="3" >
+
+    <test name="Test 1" >
+      <classes>
+          <class name="lesson2.SimpleTestParallel" />
+      </classes>
+    </test>
+
+    <!--<test name="Test 2" >-->
+        <!--<classes>-->
+            <!--<class name="lesson2.SimpleTestWithDataProvider" />-->
+        <!--</classes>-->
+    <!--</test>-->
+    <!---->
+    <!--<test name="Test 3" >-->
+        <!--<classes>-->
+            <!--<class name="lesson2.SimpleTestWithDataProvider" />-->
+        <!--</classes>-->
+    <!--</test>-->
+
+</suite>

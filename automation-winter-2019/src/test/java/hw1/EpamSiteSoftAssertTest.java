@@ -104,7 +104,6 @@ public class EpamSiteSoftAssertTest {
         //17 Close Browser
         driver.close();
 
-
         softAssert.assertAll();
     }
 }
