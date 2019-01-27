@@ -42,7 +42,10 @@
                 <version>3.0.0-M3</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src\test\resources\testng.xml</suiteXmlFile>
+                        <suiteXmlFile>src\test\resources\testngHm2Ex1.xml</suiteXmlFile>
+                        <suiteXmlFile>src\test\resources\testngHm2Ex2Smoke.xml</suiteXmlFile>
+                        <suiteXmlFile>src\test\resources\testngHm2Ex2Regression.xml</suiteXmlFile>
+                        <suiteXmlFile>src\test\resources\testngHm2Ex3.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
             </plugin>
