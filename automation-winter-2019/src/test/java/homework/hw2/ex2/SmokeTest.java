@@ -1,4 +1,4 @@
-package hw2.ex2;
+package homework.hw2.ex2;
 
 import base.SeleniumBase;
 import org.openqa.selenium.By;
@@ -9,10 +9,10 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class RegressionTest extends SeleniumBase {
+public class SmokeTest extends SeleniumBase {
 
 
-    @Test(groups = "regression")
+    @Test(groups = {"smoke", "regression"})
     public void testEpamJdiPage1() {
         //0 Test structure
         WebDriver driver = new ChromeDriver();
@@ -106,7 +106,7 @@ public class RegressionTest extends SeleniumBase {
         driver.close();
     }
 
-    @Test(groups = "regression")
+    @Test(groups = {"smoke", "regression"})
     public void testEpamJdiPage2() {
         //0 Test structure
         WebDriver driver = new ChromeDriver();
@@ -200,7 +200,7 @@ public class RegressionTest extends SeleniumBase {
         driver.close();
     }
 
-    @Test(groups = "regression")
+    @Test(groups = {"smoke", "regression"})
     public void testEpamJdiPage3() {
         //0 Test structure
         WebDriver driver = new ChromeDriver();
@@ -293,4 +293,6 @@ public class RegressionTest extends SeleniumBase {
         //17 Close Browser
         driver.close();
     }
+
+
 }

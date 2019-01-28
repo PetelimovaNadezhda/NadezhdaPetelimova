@@ -1,52 +1,23 @@
-package hw2.ex3;
+package homework.hw1;
 
+import base.SeleniumBase;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.*;
+import org.testng.annotations.Test;
 
-import static java.lang.System.setProperty;
+
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class EpamSiteWithAnnotationTest {
-
-    WebDriver driver;
-
-    @BeforeSuite
-    public void beforeSuite() {
-        setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
-    }
-
-    @BeforeClass
-    public void beforeClass() {
-        driver = new ChromeDriver();
-    }
-
-
-    @BeforeMethod
-    public void beforeMethod() {
-        driver.manage().window().maximize();
-    }
-
-    @AfterMethod
-    public void afterMethod() {
-        System.out.println(driver.getTitle());
-    }
-
-
-    @AfterClass
-    public void afterClass() {
-        driver.close();
-    }
-
-    @AfterSuite
-    public void afterSuite() {
-        System.out.println(System.currentTimeMillis());
-    }
+public class EpamSiteTest extends SeleniumBase {
 
     @Test
     public void testEpamJdiPage() {
+        //0 Test structure
+        WebDriver driver = new ChromeDriver();
+        driver.manage().window().maximize();
+
         //1 Open test site by URL
         driver.navigate().to("https://epam.github.io/JDI/");
 
@@ -130,6 +101,8 @@ public class EpamSiteWithAnnotationTest {
 
         //16 Assert that there is Footer
         assertTrue(driver.findElement(By.xpath("html/body/footer/div/div")).isDisplayed());
-    }
 
+        //17 Close Browser
+        driver.close();
+    }
 }

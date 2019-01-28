@@ -1,4 +1,4 @@
-package hw2.ex2;
+package homework.hw2.ex2;
 
 import base.SeleniumBase;
 import org.openqa.selenium.By;

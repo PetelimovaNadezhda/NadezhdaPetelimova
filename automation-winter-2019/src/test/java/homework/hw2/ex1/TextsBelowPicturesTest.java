@@ -1,6 +1,5 @@
-package hw2.ex1;
+package homework.hw2.ex1;
 
-import base.SeleniumBase;
 import base.SeleniumEnvironmentPreparation;
 import org.openqa.selenium.By;
 import org.testng.annotations.DataProvider;

@@ -1,4 +1,4 @@
-package hw1;
+package homework.hw1;
 
 import base.SeleniumBase;
 import org.openqa.selenium.By;

@@ -3,7 +3,7 @@
 <suite name="TestNg Suite" >
     <test name="Annotation test">
         <classes>
-            <class name="hw2.ex3.EpamSiteWithAnnotationTest" />
+            <class name="homework.hw2.ex3.EpamSiteWithAnnotationTest" />
         </classes>
     </test>
 </suite>

@@ -10,9 +10,9 @@
         </groups>
 
         <classes>
-            <class name="hw2.ex2.RegressionAndSmokeTest" />
-            <class name="hw2.ex2.SmokeTest" />
-            <class name="hw2.ex2.RegressionTest" />
+            <class name="homework.hw2.ex2.RegressionAndSmokeTest" />
+            <class name="homework.hw2.ex2.SmokeTest" />
+            <class name="homework.hw2.ex2.RegressionTest" />
         </classes>
 
     </test>
