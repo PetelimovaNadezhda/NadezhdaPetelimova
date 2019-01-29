@@ -12,8 +12,7 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
-// TODO Scr files should be in root folder of repository.
-// TODO .gitignore file can be improved.
+
 public class EpamSiteTest extends SeleniumBase {
     private IndexPage indexPage;
     private WebDriver driver;
@@ -32,7 +31,6 @@ public class EpamSiteTest extends SeleniumBase {
 
     @Test
     public void testEpamJdiPage() {
-
         //1 Open test site by URL
         indexPage.open();
 
@@ -51,7 +49,6 @@ public class EpamSiteTest extends SeleniumBase {
         //6 Assert that there are 4 items on the header section are displayed and they have proper text
         indexPage.menuButton();
 
-        // TODO You should ever never developed locators in this way.
         //7 Assert that there are 4 images on the Index Page and they are displayed
        indexPage.displayedPicture();
 
@@ -59,37 +56,26 @@ public class EpamSiteTest extends SeleniumBase {
        indexPage.displayedText();
 
         //9 Assert a text of the main headers
-        assertTrue(driver.findElement(By.xpath("html/body/div/div[2]/main/div[2]/h3[1]")).isDisplayed());
-        assertTrue(driver.findElement(By.xpath("html/body/div/div[2]/main/div[2]/p")).isDisplayed());
-
-        assertEquals(driver.findElement(By.xpath("html/body/div/div[2]/main/div[2]/h3[1]")).getText(),
-                "EPAM FRAMEWORK WISHES…");
-        assertEquals(driver.findElement(By.xpath("html/body/div/div[2]/main/div[2]/p")).getText(),
-                "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.");
+        indexPage.displayedMainText();
 
         //10 Assert that there is the iframe in the center of page
-        assertTrue(driver.findElement(By.cssSelector("[id='iframe']")).isDisplayed());
+        indexPage.displayedFrame();
 
         //11 Switch to the iframe and check that there is Epam logo in the left top conner of iframe
         driver.switchTo().frame("iframe");
-        assertTrue(driver.findElement(By.cssSelector("[id='epam_logo']")).isDisplayed());
+        indexPage.displayedLogo();
 
         //12 Switch to original window back
         driver.switchTo().window(driver.getWindowHandle());
 
         //13 Assert a text of the sub header
-        assertTrue(driver.findElement(By.xpath("html/body/div/div[2]/main/div[2]/h3[2]/a")).isDisplayed());
-        assertEquals(driver.findElement(By.xpath("html/body/div/div[2]/main/div[2]/h3[2]/a")).getText(),
-                "JDI GITHUB");
-
         //14 Assert that JDI GITHUB is a link and has a proper URL
-        assertEquals(driver.findElement(By.xpath("html/body/div/div[2]/main/div[2]/h3[2]/a")).getAttribute("href"),
-                "https://github.com/epam/JDI");
+        indexPage.displayedTextSubHeader();
 
         //15 Assert that there is Left Section
-        assertTrue(driver.findElement(By.cssSelector("[id='mCSB_1']")).isDisplayed());
+        indexPage.displayedLeftSector();
 
         //16 Assert that there is Footer
-        assertTrue(driver.findElement(By.xpath("html/body/footer/div/div")).isDisplayed());
+        indexPage.displayedFooter();
     }
 }

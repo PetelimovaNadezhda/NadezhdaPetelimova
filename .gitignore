@@ -1,5 +1,6 @@
 # IntelliJ IDEA
 .idea
+.iml
 *.iws
 .idea_modules/
 out/

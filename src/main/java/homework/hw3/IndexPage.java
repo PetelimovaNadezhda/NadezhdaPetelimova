@@ -61,6 +61,27 @@ public class IndexPage {
     @FindBy(css = "div.main-content > div > div:nth-child(4) > div > span")
     private WebElement textBase;
 
+    @FindBy(css = ".main-title")
+    private WebElement mainTitle;
+
+    @FindBy(css = ".main-txt")
+    private WebElement mainText;
+
+    @FindBy(css ="[id='iframe']")
+    private WebElement frame;
+
+    @FindBy(css = "[id='epam_logo']")
+    private WebElement logo;
+
+    @FindBy(css = "h3:nth-child(3)")
+    private WebElement subText;
+
+    @FindBy(css = "[id='mCSB_1']")
+    private WebElement leftSector;
+
+    @FindBy(css = ".footer-bg")
+    private WebElement footer;
+
     private WebDriver driver;
 
     public IndexPage(WebDriver driver) {
@@ -117,4 +138,41 @@ public class IndexPage {
                         "some external projects),\n" +
                         "wish to get more…");
     }
+
+    public void displayedMainText(){
+        assertTrue(mainTitle.isDisplayed());
+        assertTrue(mainText.isDisplayed());
+
+        assertEquals(mainTitle.getText(),
+                "EPAM FRAMEWORK WISHES…");
+        assertEquals(mainText.getText(),
+                "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.");
+
+    }
+
+    public void displayedFrame(){
+        assertTrue(frame.isDisplayed());
+    }
+
+    public void displayedLogo() {
+
+        assertTrue(logo.isDisplayed());
+    }
+
+    public void displayedLeftSector() {
+        assertTrue(leftSector.isDisplayed());
+    }
+
+    public void displayedTextSubHeader(){
+        assertTrue(subText.isDisplayed());
+        assertEquals(subText.getText(),
+                "JDI GITHUB");
+        assertEquals(subText.getAttribute("href"),
+                "https://github.com/epam/JDI");
+    }
+
+    public void displayedFooter() {
+        assertTrue(footer.isDisplayed());
+    }
+
 }
