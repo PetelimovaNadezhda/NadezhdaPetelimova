@@ -1,9 +1,0 @@
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-
-<suite name="TestNg Suite" >
-    <test name="Annotation test">
-        <classes>
-            <class name="homework.hw2.ex3.EpamSiteWithAnnotationTest" />
-        </classes>
-    </test>
-</suite>
