@@ -9,6 +9,7 @@
             </run>
         </groups>
 
+        <!--TODO You can specify package itself, will be a bit shorter...-->
         <classes>
             <class name="homework.hw2.ex2.RegressionAndSmokeTest" />
             <class name="homework.hw2.ex2.SmokeTest" />
