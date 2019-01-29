@@ -24,18 +24,17 @@ public class IndexPage {
     @FindBy(css = "[id='user-name']")
     private WebElement userName;
 
-    @FindBy(css = "li:nth-child(1)")
+    @FindBy(css = ".m-l8 > li:nth-child(1)")
     private WebElement menuHome;
 
-    @FindBy(css = "li:nth-child(2)")
+    @FindBy(css = ".m-l8  > li:nth-child(2)")
     private WebElement menuContact;
 
-    @FindBy(css = "li:nth-child(3)")
+    @FindBy(css = ".m-l8 >  li:nth-child(3)")
     private WebElement menuService;
 
-    @FindBy(css = "nav li:nth-child(4)")
+    @FindBy(css = ".m-l8 >  li:nth-child(4) > a")
     private WebElement menuMetalsColors;
-//    body > header > div > nav > ul.uui-navigation.nav.navbar-nav.m-l8 > li:nth-child(4) > a
 
     @FindBy(css = "div:nth-child(1) > div > div > span")
     private WebElement imgPractise;
@@ -73,7 +72,7 @@ public class IndexPage {
     @FindBy(css = "[id='epam_logo']")
     private WebElement logo;
 
-    @FindBy(css = "h3:nth-child(3)")
+    @FindBy(css = "h3:nth-child(3) > a")
     private WebElement subText;
 
     @FindBy(css = "[id='mCSB_1']")
@@ -112,7 +111,7 @@ public class IndexPage {
         assertEquals(menuHome.getText(), "HOME");
         assertEquals(menuContact.getText(), "CONTACT FORM");
         assertEquals(menuService.getText(), "SERVICE");
-        //assertEquals(menuMetalsColors.getText(), "METALS & COLORS");
+        assertEquals(menuMetalsColors.getText(), "METALS & COLORS");
     }
 
     public void displayedPicture() {
