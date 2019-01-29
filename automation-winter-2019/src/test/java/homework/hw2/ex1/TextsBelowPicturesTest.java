@@ -11,6 +11,7 @@ public class TextsBelowPicturesTest extends SeleniumEnvironmentPreparation {
 
     @DataProvider
     private Object[][] textsDataProvider() {
+        // TODO Locators should be improved.
         return new Object[][]{
                 {"html/body/div/div[2]/main/div[2]/div/div[1]/div/span",
                         "To include good practices\n" +

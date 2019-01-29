@@ -9,7 +9,8 @@ import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
-
+// TODO Scr files should be in root folder of repository.
+// TODO .gitignore file can be improved.
 public class EpamSiteTest extends SeleniumBase {
 
     @Test
@@ -42,6 +43,7 @@ public class EpamSiteTest extends SeleniumBase {
         assertEquals(driver.findElement(By.xpath("html/body/header/div/nav/ul[1]/li[3]/a")).getText(), "SERVICE");
         assertEquals(driver.findElement(By.xpath("//a[@href='metals-colors.html']")).getText(), "METALS & COLORS");
 
+        // TODO You should ever never developed locators in this way.
         //7 Assert that there are 4 images on the Index Page and they are displayed
         assertTrue(driver.findElement(By.xpath("html/body/div/div[2]/main/div[2]/div/div[1]/div/div/span"))
                 .isDisplayed());
