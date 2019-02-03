@@ -1,8 +1,6 @@
 package homework.hw3;
 
 import base.SeleniumBase;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -32,28 +30,28 @@ public class EpamSiteTest extends SeleniumBase {
     @Test
     public void testEpamJdiPage() {
         //1 Open test site by URL
-        indexPage.open();
+        indexPage.open(Html.INDEX_HTML_URL);
 
-        //2 Assert Browser title
-        indexPage.title();
+        //2 Assert Browser checkTitleName
+        indexPage.checkTitleName(Text.HOME_PAGE_TITLE);
 
         //3 Perform login
-        indexPage.login("epam", "1234");
+        indexPage.login(Users.PITER);
 
         //4 Assert User name in the left-top side of screen that user is loggined
-        indexPage.userNameAssert("PITER CHAILOVSKII");
+        indexPage.userNameAssert(Users.PITER);
 
-        //5 Assert Browser title
-        indexPage.title();
+        //5 Assert Browser checkTitleName
+        indexPage.checkTitleName(Text.HOME_PAGE_TITLE);
 
         //6 Assert that there are 4 items on the header section are displayed and they have proper text
-        indexPage.menuButton();
+        indexPage.checkMenuButtonText();
 
         //7 Assert that there are 4 images on the Index Page and they are displayed
-       indexPage.displayedPicture();
+        indexPage.displayedPicture();
 
         //8 Assert that there are 4 texts on the Index Page under icons and they have proper text
-       indexPage.displayedText();
+        indexPage.displayedText();
 
         //9 Assert a text of the main headers
         indexPage.displayedMainText();
@@ -62,7 +60,7 @@ public class EpamSiteTest extends SeleniumBase {
         indexPage.displayedFrame();
 
         //11 Switch to the iframe and check that there is Epam logo in the left top conner of iframe
-        driver.switchTo().frame("iframe");
+        driver.switchTo().frame(Frame.MAIN_FRAME.name);
         indexPage.displayedLogo();
 
         //12 Switch to original window back
@@ -70,7 +68,7 @@ public class EpamSiteTest extends SeleniumBase {
 
         //13 Assert a text of the sub header
         //14 Assert that JDI GITHUB is a link and has a proper URL
-        indexPage.displayedTextSubHeader();
+        indexPage.displayedTextSubHeader(Html.HTML_SUB_URL);
 
         //15 Assert that there is Left Section
         indexPage.displayedLeftSector();

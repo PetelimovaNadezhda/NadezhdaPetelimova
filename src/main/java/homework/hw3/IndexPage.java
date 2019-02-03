@@ -1,6 +1,5 @@
 package homework.hw3;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,7 +12,7 @@ public class IndexPage {
     private WebElement userIcon;
 
     @FindBy(css = "[id='name']")
-    private WebElement user;
+    private WebElement userLogin;
 
     @FindBy(css = "[id='password']")
     private WebElement pwd;
@@ -60,13 +59,13 @@ public class IndexPage {
     @FindBy(css = "div.main-content > div > div:nth-child(4) > div > span")
     private WebElement textBase;
 
-    @FindBy(css = ".main-title")
+    @FindBy(css = "[name = 'main-title']")
     private WebElement mainTitle;
 
     @FindBy(css = ".main-txt")
     private WebElement mainText;
 
-    @FindBy(css ="[id='iframe']")
+    @FindBy(css = "[id='iframe']")
     private WebElement frame;
 
     @FindBy(css = "[id='epam_logo']")
@@ -87,31 +86,31 @@ public class IndexPage {
         this.driver = driver;
     }
 
-    public void login(String name, String password) {
+    public void login(Users user) {
         userIcon.click();
-        user.sendKeys(name);
-        pwd.sendKeys(password);
+        userLogin.sendKeys(user.login);
+        pwd.sendKeys(user.password);
         submitButton.click();
     }
 
-    public void open() {
-        driver.get("https://epam.github.io/JDI/");
+    public void open(Html html) {
+        driver.get(html.htmlName);
         driver.manage().window().maximize();
     }
 
-    public void title() {
-        assertEquals(driver.getTitle(), "Home Page");
+    public void checkTitleName(Text name) {
+        assertEquals(driver.getTitle(), name.text);
     }
 
-    public void userNameAssert(String name) {
-        assertEquals(userName.getText(), name);
+    public void userNameAssert(Users user) {
+        assertEquals(userName.getText(), user.name);
     }
 
-    public void menuButton() {
-        assertEquals(menuHome.getText(), "HOME");
-        assertEquals(menuContact.getText(), "CONTACT FORM");
-        assertEquals(menuService.getText(), "SERVICE");
-        assertEquals(menuMetalsColors.getText(), "METALS & COLORS");
+    public void checkMenuButtonText() {
+        assertEquals(menuHome.getText(), MenuButton.HOME_BUTTON.buttonName);
+        assertEquals(menuContact.getText(), MenuButton.CONTACT_FORM_BUTTON.buttonName);
+        assertEquals(menuService.getText(), MenuButton.SERVICE_BUTTON.buttonName);
+        assertEquals(menuMetalsColors.getText(), MenuButton.METALS_COLORS_BUTTON.buttonName);
     }
 
     public void displayedPicture() {
@@ -122,39 +121,25 @@ public class IndexPage {
     }
 
     public void displayedText() {
-        assertEquals(textPractice.getText(),
-                "To include good practices\n" +
-                        "and ideas from successful\n" +
-                        "EPAM project");
-        assertEquals(textCustom.getText(),
-                "To be flexible and\n" +
-                        "customizable");
-        assertEquals(textMulti.getText(),
-                "To be multiplatform");
-        assertEquals(textBase.getText(),
-                "Already have good base\n" +
-                        "(about 20 internal and\n" +
-                        "some external projects),\n" +
-                        "wish to get more…");
+        assertEquals(textPractice.getText(), Text.PRACTICES_PICTURE_TEXT.text);
+        assertEquals(textCustom.getText(), Text.CUSTOM_PICTURE_TEXT.text);
+        assertEquals(textMulti.getText(), Text.MULTI_PICTURE_TEXT.text);
+        assertEquals(textBase.getText(), Text.BASE_PICTURE_TEXT.text);
     }
 
-    public void displayedMainText(){
+    public void displayedMainText() {
         assertTrue(mainTitle.isDisplayed());
         assertTrue(mainText.isDisplayed());
 
-        assertEquals(mainTitle.getText(),
-                "EPAM FRAMEWORK WISHES…");
-        assertEquals(mainText.getText(),
-                "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.");
-
+        assertEquals(mainTitle.getText(), Text.MAIN_TITLE_TEXT.text);
+        assertEquals(mainText.getText(), Text.MAIN_SUB_TITLE_TEXT.text);
     }
 
-    public void displayedFrame(){
+    public void displayedFrame() {
         assertTrue(frame.isDisplayed());
     }
 
     public void displayedLogo() {
-
         assertTrue(logo.isDisplayed());
     }
 
@@ -162,16 +147,13 @@ public class IndexPage {
         assertTrue(leftSector.isDisplayed());
     }
 
-    public void displayedTextSubHeader(){
+    public void displayedTextSubHeader(Html html) {
         assertTrue(subText.isDisplayed());
-        assertEquals(subText.getText(),
-                "JDI GITHUB");
-        assertEquals(subText.getAttribute("href"),
-                "https://github.com/epam/JDI");
+        assertEquals(subText.getText(), Text.MAIN_SUB_TEXT.text);
+        assertEquals(subText.getAttribute("href"), html.htmlName);
     }
 
     public void displayedFooter() {
         assertTrue(footer.isDisplayed());
     }
-
 }
