@@ -1,6 +1,5 @@
 # IntelliJ IDEA
 .idea
-# TODO Pay attention !!
 *.iml
 *.iws
 .idea_modules/
