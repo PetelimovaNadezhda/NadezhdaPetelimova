@@ -1,5 +1,6 @@
 package homework.hw3;
 
+// TODO The name of enum should represent of it purpose
 public enum Text {
     PRACTICES_PICTURE_TEXT("To include good practices\n" +
             "and ideas from successful\n" +

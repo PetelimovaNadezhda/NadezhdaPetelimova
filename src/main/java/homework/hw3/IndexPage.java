@@ -35,6 +35,8 @@ public class IndexPage {
     @FindBy(css = ".m-l8 >  li:nth-child(4) > a")
     private WebElement menuMetalsColors;
 
+    // TODO In this case it is not make a sense to create a separate element for each benefit
+    // TODO Take a look on @FindAll annotation and verify this elements in loop
     @FindBy(css = "div:nth-child(1) > div > div > span")
     private WebElement imgPractise;
 
@@ -58,6 +60,7 @@ public class IndexPage {
 
     @FindBy(css = "div.main-content > div > div:nth-child(4) > div > span")
     private WebElement textBase;
+    // !TODO
 
     @FindBy(css = "[name = 'main-title']")
     private WebElement mainTitle;
@@ -120,6 +123,8 @@ public class IndexPage {
         assertTrue(imgPractise.isDisplayed());
     }
 
+    // TODO This method should be parametrised by List of Enums
+    // TODO Take a look on enum default methods
     public void displayedText() {
         assertEquals(textPractice.getText(), Text.PRACTICES_PICTURE_TEXT.text);
         assertEquals(textCustom.getText(), Text.CUSTOM_PICTURE_TEXT.text);
