@@ -9,7 +9,6 @@ import static org.testng.AssertJUnit.assertEquals;
 
 public class TextsBelowPicturesTest extends SeleniumEnvironmentPreparation {
 
-    // TODO Could you please create locators by your own instead of copy it from devtool.
     @DataProvider
     private Object[][] textsDataProvider() {
         return new Object[][]{

@@ -4,6 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -23,44 +27,14 @@ public class IndexPage {
     @FindBy(css = "[id='user-name']")
     private WebElement userName;
 
-    @FindBy(css = ".m-l8 > li:nth-child(1)")
-    private WebElement menuHome;
+    @FindBy(css = ".m-l8")
+    private List<WebElement> menuButton;
 
-    @FindBy(css = ".m-l8  > li:nth-child(2)")
-    private WebElement menuContact;
+    @FindBy(css = ".icons-benefit")
+    private List<WebElement> imgBenefit;
 
-    @FindBy(css = ".m-l8 >  li:nth-child(3)")
-    private WebElement menuService;
-
-    @FindBy(css = ".m-l8 >  li:nth-child(4) > a")
-    private WebElement menuMetalsColors;
-
-    // TODO In this case it is not make a sense to create a separate element for each benefit
-    // TODO Take a look on @FindAll annotation and verify this elements in loop
-    @FindBy(css = "div:nth-child(1) > div > div > span")
-    private WebElement imgPractise;
-
-    @FindBy(css = "div:nth-child(2) > div > div > span")
-    private WebElement imgCustom;
-
-    @FindBy(css = "div:nth-child(3) > div > div > span")
-    private WebElement imgMulti;
-
-    @FindBy(css = "div:nth-child(4) > div > div > span")
-    private WebElement imgBase;
-
-    @FindBy(css = "div.main-content > div > div:nth-child(1) > div > span")
-    private WebElement textPractice;
-
-    @FindBy(css = "div.main-content > div > div:nth-child(2) > div > span")
-    private WebElement textCustom;
-
-    @FindBy(css = "div.main-content > div > div:nth-child(3) > div > span")
-    private WebElement textMulti;
-
-    @FindBy(css = "div.main-content > div > div:nth-child(4) > div > span")
-    private WebElement textBase;
-    // !TODO
+    @FindBy(css = ".benefit-txt")
+    private List<WebElement> textImg;
 
     @FindBy(css = "[name = 'main-title']")
     private WebElement mainTitle;
@@ -101,7 +75,7 @@ public class IndexPage {
         driver.manage().window().maximize();
     }
 
-    public void checkTitleName(Text name) {
+    public void checkTitleName(TextMain name) {
         assertEquals(driver.getTitle(), name.text);
     }
 
@@ -109,35 +83,32 @@ public class IndexPage {
         assertEquals(userName.getText(), user.name);
     }
 
-    public void checkMenuButtonText() {
-        assertEquals(menuHome.getText(), MenuButton.HOME_BUTTON.buttonName);
-        assertEquals(menuContact.getText(), MenuButton.CONTACT_FORM_BUTTON.buttonName);
-        assertEquals(menuService.getText(), MenuButton.SERVICE_BUTTON.buttonName);
-        assertEquals(menuMetalsColors.getText(), MenuButton.METALS_COLORS_BUTTON.buttonName);
+    public void checkMenuButtonText(MenuButton[] textMenuButton) {
+        List<String> listTextImg = menuButton.stream().flatMap((e) -> Arrays.stream(e.getText().split("\\r?\\n"))).collect(Collectors.toList());
+        for (MenuButton txt: textMenuButton) {
+            assertTrue(listTextImg.contains(txt.buttonName));
+        }
     }
 
     public void displayedPicture() {
-        assertTrue(imgBase.isDisplayed());
-        assertTrue(imgCustom.isDisplayed());
-        assertTrue(imgMulti.isDisplayed());
-        assertTrue(imgPractise.isDisplayed());
+        for (WebElement element: imgBenefit) {
+            assertTrue(element.isDisplayed());
+        }
     }
 
-    // TODO This method should be parametrised by List of Enums
-    // TODO Take a look on enum default methods
-    public void displayedText() {
-        assertEquals(textPractice.getText(), Text.PRACTICES_PICTURE_TEXT.text);
-        assertEquals(textCustom.getText(), Text.CUSTOM_PICTURE_TEXT.text);
-        assertEquals(textMulti.getText(), Text.MULTI_PICTURE_TEXT.text);
-        assertEquals(textBase.getText(), Text.BASE_PICTURE_TEXT.text);
+    public void displayedText(TextForImg[] textExpectedOnSite) {
+        List<String> listTextImg = textImg.stream().map(WebElement::getText).collect(Collectors.toList());
+        for (TextForImg txt: textExpectedOnSite) {
+            assertTrue(listTextImg.contains(txt.text));
+        }
     }
 
-    public void displayedMainText() {
+    public void displayedMainText(TextMain mainTxtTitle, TextMain mainTxtSubTitle) {
         assertTrue(mainTitle.isDisplayed());
         assertTrue(mainText.isDisplayed());
 
-        assertEquals(mainTitle.getText(), Text.MAIN_TITLE_TEXT.text);
-        assertEquals(mainText.getText(), Text.MAIN_SUB_TITLE_TEXT.text);
+        assertEquals(mainTitle.getText(), mainTxtTitle.text);
+        assertEquals(mainText.getText(), mainTxtSubTitle.text);
     }
 
     public void displayedFrame() {
@@ -152,9 +123,9 @@ public class IndexPage {
         assertTrue(leftSector.isDisplayed());
     }
 
-    public void displayedTextSubHeader(Html html) {
+    public void displayedTextSubHeader(Html html, TextMain mainSubTxt) {
         assertTrue(subText.isDisplayed());
-        assertEquals(subText.getText(), Text.MAIN_SUB_TEXT.text);
+        assertEquals(subText.getText(), mainSubTxt.text);
         assertEquals(subText.getAttribute("href"), html.htmlName);
     }
 

@@ -33,7 +33,7 @@ public class EpamSiteTest extends SeleniumBase {
         indexPage.open(Html.INDEX_HTML_URL);
 
         //2 Assert Browser checkTitleName
-        indexPage.checkTitleName(Text.HOME_PAGE_TITLE);
+        indexPage.checkTitleName(TextMain.HOME_PAGE_TITLE);
 
         //3 Perform login
         indexPage.login(Users.PITER);
@@ -42,19 +42,19 @@ public class EpamSiteTest extends SeleniumBase {
         indexPage.userNameAssert(Users.PITER);
 
         //5 Assert Browser checkTitleName
-        indexPage.checkTitleName(Text.HOME_PAGE_TITLE);
+        indexPage.checkTitleName(TextMain.HOME_PAGE_TITLE);
 
         //6 Assert that there are 4 items on the header section are displayed and they have proper text
-        indexPage.checkMenuButtonText();
+        indexPage.checkMenuButtonText(MenuButton.values());
 
         //7 Assert that there are 4 images on the Index Page and they are displayed
         indexPage.displayedPicture();
 
         //8 Assert that there are 4 texts on the Index Page under icons and they have proper text
-        indexPage.displayedText();
+        indexPage.displayedText(TextForImg.values());
 
         //9 Assert a text of the main headers
-        indexPage.displayedMainText();
+        indexPage.displayedMainText(TextMain.MAIN_TITLE_TEXT, TextMain.MAIN_SUB_TITLE_TEXT);
 
         //10 Assert that there is the iframe in the center of page
         indexPage.displayedFrame();
@@ -68,7 +68,7 @@ public class EpamSiteTest extends SeleniumBase {
 
         //13 Assert a text of the sub header
         //14 Assert that JDI GITHUB is a link and has a proper URL
-        indexPage.displayedTextSubHeader(Html.HTML_SUB_URL);
+        indexPage.displayedTextSubHeader(Html.HTML_SUB_URL, TextMain.MAIN_SUB_TEXT);
 
         //15 Assert that there is Left Section
         indexPage.displayedLeftSector();
