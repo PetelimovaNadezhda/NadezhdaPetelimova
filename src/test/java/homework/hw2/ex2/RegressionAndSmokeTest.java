@@ -70,11 +70,11 @@ public class RegressionAndSmokeTest extends SeleniumBase {
 
         //9 Assert a text of the main headers
         assertTrue(driver.findElement(By.xpath("html/body/div/div[2]/main/div[2]/h3[1]")).isDisplayed());
-        assertTrue(driver.findElement(By.xpath("html/body/div/div[2]/main/div[2]/p")).isDisplayed());
+        assertTrue(driver.findElement(By.xpath("html/body/div/div[2]/main/div[2]/SelenideMenu")).isDisplayed());
 
         assertEquals(driver.findElement(By.xpath("html/body/div/div[2]/main/div[2]/h3[1]")).getText(),
                 "EPAM FRAMEWORK WISHES…");
-        assertEquals(driver.findElement(By.xpath("html/body/div/div[2]/main/div[2]/p")).getText(),
+        assertEquals(driver.findElement(By.xpath("html/body/div/div[2]/main/div[2]/SelenideMenu")).getText(),
                 "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.");
 
         //10 Assert that there is the iframe in the center of page
@@ -164,11 +164,11 @@ public class RegressionAndSmokeTest extends SeleniumBase {
 
         //9 Assert a text of the main headers
         assertTrue(driver.findElement(By.xpath("html/body/div/div[2]/main/div[2]/h3[1]")).isDisplayed());
-        assertTrue(driver.findElement(By.xpath("html/body/div/div[2]/main/div[2]/p")).isDisplayed());
+        assertTrue(driver.findElement(By.xpath("html/body/div/div[2]/main/div[2]/SelenideMenu")).isDisplayed());
 
         assertEquals(driver.findElement(By.xpath("html/body/div/div[2]/main/div[2]/h3[1]")).getText(),
                 "EPAM FRAMEWORK WISHES…");
-        assertEquals(driver.findElement(By.xpath("html/body/div/div[2]/main/div[2]/p")).getText(),
+        assertEquals(driver.findElement(By.xpath("html/body/div/div[2]/main/div[2]/SelenideMenu")).getText(),
                 "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.");
 
         //10 Assert that there is the iframe in the center of page
@@ -258,11 +258,11 @@ public class RegressionAndSmokeTest extends SeleniumBase {
 
         //9 Assert a text of the main headers
         assertTrue(driver.findElement(By.xpath("html/body/div/div[2]/main/div[2]/h3[1]")).isDisplayed());
-        assertTrue(driver.findElement(By.xpath("html/body/div/div[2]/main/div[2]/p")).isDisplayed());
+        assertTrue(driver.findElement(By.xpath("html/body/div/div[2]/main/div[2]/SelenideMenu")).isDisplayed());
 
         assertEquals(driver.findElement(By.xpath("html/body/div/div[2]/main/div[2]/h3[1]")).getText(),
                 "EPAM FRAMEWORK WISHES…");
-        assertEquals(driver.findElement(By.xpath("html/body/div/div[2]/main/div[2]/p")).getText(),
+        assertEquals(driver.findElement(By.xpath("html/body/div/div[2]/main/div[2]/SelenideMenu")).getText(),
                 "LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISICING ELIT, SED DO EIUSMOD TEMPOR INCIDIDUNT UT LABORE ET DOLORE MAGNA ALIQUA. UT ENIM AD MINIM VENIAM, QUIS NOSTRUD EXERCITATION ULLAMCO LABORIS NISI UT ALIQUIP EX EA COMMODO CONSEQUAT DUIS AUTE IRURE DOLOR IN REPREHENDERIT IN VOLUPTATE VELIT ESSE CILLUM DOLORE EU FUGIAT NULLA PARIATUR.");
 
         //10 Assert that there is the iframe in the center of page
