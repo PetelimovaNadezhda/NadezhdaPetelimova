@@ -5,6 +5,7 @@ import com.codeborne.selenide.SelenideElement;
 import homework.hw3.TextMain;
 import homework.hw3.Users;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.interactions.Actions;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static com.codeborne.selenide.WebDriverRunner.source;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
@@ -34,6 +36,7 @@ public class SelenideIndexPage {
     private final ElementsCollection buttons = $(".main-content-hg").findAll(".uui-button");
     private final SelenideElement leftRange = $$(".ui-slider-handle").first();
     private final SelenideElement rightRange = $$(".ui-slider-handle").last();
+    private final SelenideElement sliderRange = $(".ui-slider-range");
 
 
     public void login(Users user) {
@@ -101,12 +104,9 @@ public class SelenideIndexPage {
     public void assertLogRange(int from, int to) {
         String[] lines = logs
                 .getText().split("\\r?\\n");
-        if (!lines[1].contains("Range 2(From):" + from + " link clicked"))
-            System.out.println(lines[1] + "; Range 2(From):" + from + " link clicked");
-        if (!lines[0].contains("Range 2(To):" + to + " link clicked"))
-            System.out.println(lines[0] + "; Range 2(To):" + to + " link clicked");
-        assertTrue(lines[1].contains("Range 2(From):" + from + " link clicked"));
-        assertTrue(lines[0].contains("Range 2(To):" + to + " link clicked"));
+        String log = lines[0] + lines[1];
+        assertTrue(log.contains("Range 2(From):" + from + " link clicked"));
+        assertTrue(log.contains("Range 2(To):" + to + " link clicked"));
     }
 
     public void checkInterface() {
@@ -117,19 +117,21 @@ public class SelenideIndexPage {
     }
 
     void openDatesPage() {
+        getWebDriver().manage().window().maximize();
         $(".dropdown-toggle").click();
         serviceMenuHeader.findBy(text(ServiceSubcategory.DATES.text)).click();
     }
 
     void setRange(int left, int right) {
-        Actions move = new Actions(getWebDriver());
-        int sliderWidth = $(".uui-slider").getSize().getWidth();
-        double index = sliderWidth / 100.0;
-        double leftValue = Double.valueOf(leftRange.getAttribute("style").replaceAll("[^0-9]", ""));
-        double rightValue = Double.valueOf(rightRange.getAttribute("style").replaceAll("[^0-9]", ""));
-        int leftMove = (left - leftValue) * index;
-        int rightMove = (right - rightValue) * index;
-        move.dragAndDropBy(leftRange, leftMove, 0).build().perform();
-        move.dragAndDropBy(rightRange, rightMove, 0).build().perform();
+        //    System.out.println(leftRange.getAttribute("style").);
+        JavascriptExecutor js = (JavascriptExecutor) getWebDriver();
+        js.executeScript("arguments[0].style.left='" + left + "%';\n" +
+                "arguments[0].childNodes[0].innerHTML='" + left + "';\n", leftRange);
+        leftRange.click();
+        js.executeScript("arguments[0].style.left='" + right + "%';\n" +
+                "arguments[0].childNodes[0].innerHTML='" + right + "';\n" +
+                "arguments[1].style.left='" + left + "%';\n" +
+                "arguments[1].style.width='" + (right - left) + "%'", rightRange, sliderRange);
+        rightRange.click();
     }
 }
