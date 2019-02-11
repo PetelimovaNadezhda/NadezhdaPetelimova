@@ -3,11 +3,14 @@ package homework.hw4;
 import base.SelenideBase;
 import homework.hw3.TextMain;
 import homework.hw3.Users;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static com.codeborne.selenide.Selenide.open;
-import static com.codeborne.selenide.Selenide.page;
+import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class EpamSiteSlidersTest extends SelenideBase {
     private SelenideIndexPage indexPage;
@@ -19,6 +22,8 @@ public class EpamSiteSlidersTest extends SelenideBase {
         indexPage = page(SelenideIndexPage.class);
     }
 
+    @Feature(value = "Slider")
+    @Story(value = "Slider")
     @Test
     public void testEpamJdiPage4() {
         //2 Assert Browser title

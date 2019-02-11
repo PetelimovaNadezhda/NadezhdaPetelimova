@@ -8,6 +8,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class EpamSiteTest extends SelenideBase {
     private homework.hw4.SelenideIndexPage indexPage;
@@ -16,6 +17,7 @@ public class EpamSiteTest extends SelenideBase {
     public void initTest() {
         //1 Open test site by URL
         open("https://epam.github.io/JDI/index.html");
+        getWebDriver().manage().window().maximize();
         indexPage = page(homework.hw4.SelenideIndexPage.class);
     }
 

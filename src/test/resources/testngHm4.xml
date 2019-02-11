@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="TestNg Suite" data-provider-thread-count="4">
+    <test name="Texts below picture test">
+        <packages>
+            <package name="homework.hw4" />
+        </packages>
+    </test>
+</suite>

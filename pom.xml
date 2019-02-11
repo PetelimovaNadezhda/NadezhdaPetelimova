@@ -76,10 +76,7 @@
                         </property>
                     </systemProperties>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src\test\resources\testngHm2Ex1.xml</suiteXmlFile>
-                        <suiteXmlFile>src\test\resources\testngHm2Ex2Smoke.xml</suiteXmlFile>
-                        <suiteXmlFile>src\test\resources\testngHm2Ex2Regression.xml</suiteXmlFile>
-                        <suiteXmlFile>src\test\resources\testngHm2Ex3.xml</suiteXmlFile>
+                        <suiteXmlFile>src\test\resources\testngHm4.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
                 <dependencies>
