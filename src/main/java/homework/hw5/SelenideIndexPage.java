@@ -1,4 +1,4 @@
-package homework.hw4;
+package homework.hw5;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
@@ -113,17 +113,8 @@ public class SelenideIndexPage {
     }
 
     @Step
-    void assertLogRange(int from, int to) {
-        String[] lines = logs
-                .getText().split("\\r?\\n");
-        String log = lines[0] + lines[1];
-        assertTrue(log.contains("Range 2(From):" + from + " link clicked"));
-        assertTrue(log.contains("Range 2(To):" + to + " link clicked"));
-    }
-
-    @Step
     void checkInterface() {
-        assertEquals(elements.size(), 4);
+        assertEquals(elements.size(), 5);
         assertEquals(metals.size(), 4);
         assertEquals(buttons.size(), 2);
         assertTrue(colors.isDisplayed());

@@ -1,5 +1,6 @@
 package homework.hw3;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -63,6 +64,7 @@ public class IndexPage {
         this.driver = driver;
     }
 
+    @Step
     public void login(Users user) {
         userIcon.click();
         userLogin.sendKeys(user.login);
@@ -70,19 +72,23 @@ public class IndexPage {
         submitButton.click();
     }
 
+    @Step
     public void open(Html html) {
         driver.get(html.htmlName);
         driver.manage().window().maximize();
     }
 
+    @Step
     public void checkTitleName(TextMain name) {
         assertEquals(driver.getTitle(), name.text);
     }
 
+    @Step
     public void userNameAssert(Users user) {
         assertEquals(userName.getText(), user.name);
     }
 
+    @Step
     public void checkMenuButtonText(MenuButton[] textMenuButton) {
         List<String> listTextImg = menuButton.stream().flatMap((e) -> Arrays.stream(e.getText().split("\\r?\\n"))).collect(Collectors.toList());
         for (MenuButton txt: textMenuButton) {
@@ -90,12 +96,14 @@ public class IndexPage {
         }
     }
 
+    @Step
     public void displayedPicture() {
         for (WebElement element: imgBenefit) {
             assertTrue(element.isDisplayed());
         }
     }
 
+    @Step
     public void displayedText(TextForImg[] textExpectedOnSite) {
         List<String> listTextImg = textImg.stream().map(WebElement::getText).collect(Collectors.toList());
         for (TextForImg txt: textExpectedOnSite) {
@@ -103,6 +111,7 @@ public class IndexPage {
         }
     }
 
+    @Step
     public void displayedMainText(TextMain mainTxtTitle, TextMain mainTxtSubTitle) {
         assertTrue(mainTitle.isDisplayed());
         assertTrue(mainText.isDisplayed());
@@ -111,24 +120,29 @@ public class IndexPage {
         assertEquals(mainText.getText(), mainTxtSubTitle.text);
     }
 
+    @Step
     public void displayedFrame() {
         assertTrue(frame.isDisplayed());
     }
 
+    @Step
     public void displayedLogo() {
         assertTrue(logo.isDisplayed());
     }
 
+    @Step
     public void displayedLeftSector() {
         assertTrue(leftSector.isDisplayed());
     }
 
+    @Step
     public void displayedTextSubHeader(Html html, TextMain mainSubTxt) {
         assertTrue(subText.isDisplayed());
         assertEquals(subText.getText(), mainSubTxt.text);
         assertEquals(subText.getAttribute("href"), html.htmlName);
     }
 
+    @Step
     public void displayedFooter() {
         assertTrue(footer.isDisplayed());
     }

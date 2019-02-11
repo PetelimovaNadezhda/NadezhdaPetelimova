@@ -1,26 +1,27 @@
-package homework.hw4;
+package homework.hw5;
 
 import base.SelenideBase;
 import homework.hw3.TextMain;
 import homework.hw3.Users;
-
-import io.qameta.allure.Story;
+import homework.hw4.*;
 import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.page;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 public class EpamSiteTest extends SelenideBase {
-    private homework.hw4.SelenideIndexPage indexPage;
+    private SelenideIndexPage indexPage;
 
     @BeforeMethod
     public void initTest() {
         //1 Open test site by URL
         open("https://epam.github.io/JDI/index.html");
         getWebDriver().manage().window().maximize();
-        indexPage = page(homework.hw4.SelenideIndexPage.class);
+        indexPage = page(SelenideIndexPage.class);
     }
 
     @Feature(value = "Interface")

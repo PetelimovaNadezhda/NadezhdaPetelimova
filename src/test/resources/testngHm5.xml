@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="TestNg Suite"  parallel="methods" thread-count="3">
+    <test name="Texts below picture test">
+        <packages>
+            <package name="homework.hw5" />
+            <package name="homework.hw4" />
+        </packages>
+    </test>
+</suite>
