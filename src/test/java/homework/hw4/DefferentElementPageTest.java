@@ -9,8 +9,13 @@ import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static homework.hw4.Colors.*;
+import static homework.hw4.Elements.*;
+import static homework.hw4.Metals.*;
+import static homework.hw4.Regex.*;
 
-public class EpamSiteTest extends SelenideBase {
+// TODO
+public class DefferentElementPageTest extends SelenideBase {
     private homework.hw4.SelenideIndexPage indexPage;
 
     @BeforeMethod
@@ -51,39 +56,39 @@ public class EpamSiteTest extends SelenideBase {
         indexPage.checkLeft();
 
         //11 Select checkboxes
-        indexPage.selectCheckboxes(Elements.WIND);
+        indexPage.selectCheckboxes(WIND);
 
         //12 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
-        indexPage.assertLog(Regex.WIND_TRUE);
+        indexPage.assertLog(WIND_TRUE);
 
         //11 Select checkboxes
-        indexPage.selectCheckboxes(Elements.WATER);
+        indexPage.selectCheckboxes(WATER);
 
         //12 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
-        indexPage.assertLog(Regex.WATER_TRUE);
+        indexPage.assertLog(WATER_TRUE);
 
         //13 Select radio
-        indexPage.selectRadio(Metals.SELEN);
+        indexPage.selectRadio(SELEN);
 
         //14 Assert that for radiobutton there is a log row and value is corresponded to the status of radiobutton. 
-        indexPage.assertLog(Regex.METAL_SELEN);
+        indexPage.assertLog(METAL_SELEN);
 
         //15 Select in dropdown
-        indexPage.selectColor(Colors.YELLOW);
+        indexPage.selectColor(YELLOW);
 
         //16 Assert that for dropdown there is a log row and value is corresponded to the selected value. 
-        indexPage.assertLog(Regex.COLOR_YELLOW);
+        indexPage.assertLog(COLOR_YELLOW);
 
         //17 Unselect and assert checkboxes
-        indexPage.selectCheckboxes(Elements.WATER);
+        indexPage.selectCheckboxes(WATER);
 
         //18 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
-        indexPage.assertLog(Regex.WATER_FALSE);
+        indexPage.assertLog(WATER_FALSE);
 
         //17 Unselect and assert checkboxes
-        indexPage.selectCheckboxes(Elements.WIND);
+        indexPage.selectCheckboxes(WIND);
 
         //18 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
-        indexPage.assertLog(Regex.WIND_FALSE);
+        indexPage.assertLog(WIND_FALSE);
     }
 }

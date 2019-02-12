@@ -17,6 +17,7 @@ out/
 *.tar.gz
 *.rar
 
+# TODO This file should be improved, allure
 
 # Maven
 target/
