@@ -18,6 +18,7 @@ public class EpamSiteSlidersTest extends SelenideBase {
     @BeforeMethod
     public void initTest() {
         //1 Open test site by URL
+        // TODO This should be store via enum or constant
         open("https://epam.github.io/JDI/index.html");
         indexPage = page(SelenideIndexPage.class);
     }

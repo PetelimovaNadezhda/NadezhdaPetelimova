@@ -18,6 +18,17 @@ import static com.codeborne.selenide.WebDriverRunner.source;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
+// TODO Take look on HW-3, you have to use @FindBy annotation here
+// TODO In general, you should use only Selenide assertions here !
+/*
+TODO It is NOT an IndexPage.
+Basically, you should have 3 PO
+1 Home/index page
+2 DifferentElements page
+3 Dates page
+
+This pages should consist of different elements, you should not repeat yourself.
+ */
 public class SelenideIndexPage {
 
     private final SelenideElement leftSection = $(".log-sidebar");
@@ -59,6 +70,7 @@ public class SelenideIndexPage {
     }
 
     void serviceMenu(ServiceSubcategory[] subcategory) {
+        // TODO You should not find elements in PO method, use @FindBy
         $(".menu-title").click();
         List<String> listService = serviceMenu.texts();
         for (ServiceSubcategory name : subcategory) {
@@ -80,6 +92,7 @@ public class SelenideIndexPage {
 
     void openDifferentElement() {
         $(".dropdown-toggle").click();
+        // TODO That's really great, but why don't you parametrise this method ?
         serviceMenuHeader.findBy(text(ServiceSubcategory.DIFFERENT.text)).click();
     }
 
@@ -117,6 +130,7 @@ public class SelenideIndexPage {
     }
 
     void openDatesPage() {
+        // TODO This should not be here, take a look on HW2-3
         getWebDriver().manage().window().maximize();
         $(".dropdown-toggle").click();
         serviceMenuHeader.findBy(text(ServiceSubcategory.DATES.text)).click();
