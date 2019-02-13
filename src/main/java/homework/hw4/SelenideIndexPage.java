@@ -22,20 +22,28 @@ public class SelenideIndexPage {
     public static final SelenideElement serviceHeaderMenu = $(".dropdown-toggle");
     @FindBy(css = ".dropdown-menu > li")
     ElementsCollection serviceMenuHeaderSubcategory;
+
     @FindBy(css = ".dropdown-toggle")
     SelenideElement serviceMenuHeader;
+
     @FindBy(css = "#user-name")
     SelenideElement userName;
+
     @FindBy(css = ".sub > li")
     ElementsCollection serviceMenuChildrenLeftSection;
+
     @FindBy(css = ".menu-title")
     SelenideElement serviceMenuLeftSection;
+
     @FindBy(css = "#user-icon")
     SelenideElement userIcon;
+
     @FindBy(css = "#name")
     SelenideElement login;
+
     @FindBy(css = "#password")
     SelenideElement pass;
+
     @FindBy(css = "#login-button")
     SelenideElement loginButton;
 
@@ -51,7 +59,6 @@ public class SelenideIndexPage {
     void userNameAssert(Users user) {
         userName.shouldHave(text(user.name));
     }
-
 
     @Step
     void serviceMenu(ServiceSubcategory[] subcategory) {

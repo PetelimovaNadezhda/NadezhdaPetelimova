@@ -4,14 +4,11 @@ import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import com.sun.javafx.binding.StringFormatter;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
-import static org.testng.Assert.assertTrue;
 
 public class DifferentElementsPage {
     @FindBy(css = ".info-panel-body.info-panel-body-log")
