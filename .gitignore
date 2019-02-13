@@ -17,7 +17,8 @@ out/
 *.tar.gz
 *.rar
 
-# TODO This file should be improved, allure
+allure-results
+.allure
 
 # Maven
 target/
@@ -30,3 +31,4 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
+
