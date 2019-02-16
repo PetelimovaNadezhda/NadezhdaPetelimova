@@ -130,6 +130,7 @@ public class DifferentElementPageTest extends SelenideBase implements ITestListe
     private byte[] makeScreenshot() {
         return ((TakesScreenshot) WebDriverRunner.getWebDriver()).getScreenshotAs(OutputType.BYTES);
     }
+
     @Override
     public void onTestFailure(ITestResult iTestResult) {
         makeScreenshot();
