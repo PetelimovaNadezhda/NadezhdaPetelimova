@@ -1,28 +1,20 @@
 package homework.hw5;
 
+import base.LFailure;
 import base.SelenideBase;
-import com.codeborne.selenide.WebDriverRunner;
 import homework.hw3.TextMain;
 import homework.hw3.Users;
-
 import homework.hw4.DifferentElementsPage;
 import homework.hw4.SelenideIndexPage;
 import homework.hw4.ServiceSubcategory;
-import io.qameta.allure.Attachment;
-import io.qameta.allure.Story;
 import io.qameta.allure.Feature;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
-import org.testng.ITestContext;
-import org.testng.ITestListener;
-import org.testng.ITestResult;
+import io.qameta.allure.Story;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-import java.io.File;
-
-import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.page;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static homework.hw3.Html.INDEX_HTML_URL;
 import static homework.hw4.BooleanLiterals.FALSE;
@@ -37,7 +29,9 @@ import static homework.hw4.LogPatterns.METAL_COLOR;
 import static homework.hw4.Metals.SELEN;
 import static homework.hw4.ServiceSubcategory.DIFFERENT;
 
-public class DifferentElementPageTest extends SelenideBase implements ITestListener {
+
+@Listeners({ LFailure.class })
+public class DifferentElementPageTest extends SelenideBase {
     private SelenideIndexPage indexPage;
     private DifferentElementsPage differentElementsPage;
 
@@ -114,45 +108,5 @@ public class DifferentElementPageTest extends SelenideBase implements ITestListe
 
         //18 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
         differentElementsPage.assertLog(String.format(ELEMENTS.patterns, WIND.text, FALSE.text));
-    }
-
-    @Override
-    public void onTestStart(ITestResult iTestResult) {
-
-    }
-
-    @Override
-    public void onTestSuccess(ITestResult iTestResult) {
-
-    }
-
-    @Attachment(value = "Page screenshot", type = "image/png")
-    private byte[] makeScreenshot() {
-        return ((TakesScreenshot) WebDriverRunner.getWebDriver()).getScreenshotAs(OutputType.BYTES);
-    }
-
-    @Override
-    public void onTestFailure(ITestResult iTestResult) {
-        makeScreenshot();
-    }
-
-    @Override
-    public void onTestSkipped(ITestResult iTestResult) {
-
-    }
-
-    @Override
-    public void onTestFailedButWithinSuccessPercentage(ITestResult iTestResult) {
-
-    }
-
-    @Override
-    public void onStart(ITestContext iTestContext) {
-
-    }
-
-    @Override
-    public void onFinish(ITestContext iTestContext) {
-
     }
 }

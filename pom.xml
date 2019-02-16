@@ -84,6 +84,10 @@
                             <name>allure.results.directory</name>
                             <value>${project.build.directory}/allure-results</value>
                         </property>
+                        <property>
+                            <name>listener</name>
+                            <value>ru.yandex.qatools.allure.testng.AllureTestListener</value>
+                        </property>
                     </systemProperties>
                     <suiteXmlFiles>
                         <suiteXmlFile>src\test\resources\testngHm5.xml</suiteXmlFile>
