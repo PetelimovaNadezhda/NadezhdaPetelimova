@@ -1,16 +1,12 @@
-package homework.hw5;
+package homework.hw6;
 
-import base.LFailure;
 import base.SelenideBase;
 import homework.hw3.TextMain;
 import homework.hw3.Users;
-import homework.hw4.DifferentElementsPage;
-import homework.hw4.SelenideIndexPage;
 import homework.hw4.ServiceSubcategory;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.open;
@@ -29,25 +25,23 @@ import static homework.hw4.LogPatterns.METAL_COLOR;
 import static homework.hw4.Metals.SELEN;
 import static homework.hw4.ServiceSubcategory.DIFFERENT;
 
-
-@Listeners({ LFailure.class })
 public class DifferentElementPageTest extends SelenideBase {
-    private SelenideIndexPage indexPage;
-    private DifferentElementsPage differentElementsPage;
+    private homework.hw4.SelenideIndexPage indexPage;
+    private homework.hw4.DifferentElementsPage differentElementsPage;
 
     @BeforeMethod
     public void initTest() {
         //1 Open test site by URL
         open(INDEX_HTML_URL.htmlName);
         getWebDriver().manage().window().maximize();
-        indexPage = page(SelenideIndexPage.class);
-        differentElementsPage = page(DifferentElementsPage.class);
+        indexPage = page(homework.hw4.SelenideIndexPage.class);
+        differentElementsPage = page(homework.hw4.DifferentElementsPage.class);
     }
 
     @Feature(value = "Interface")
     @Story(value = "Interface")
     @Test
-    public void testEpamJdiPage5() {
+    public void testEpamJdiPage4() {
         //2 Assert Browser title
         indexPage.checkBrowserTitle(TextMain.HOME_PAGE_TITLE);
 
@@ -77,7 +71,7 @@ public class DifferentElementPageTest extends SelenideBase {
         differentElementsPage.selectCheckboxes(WIND);
 
         //12 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
-        differentElementsPage.assertLog(String.format(ELEMENTS.patterns, WIND.text, FALSE.text));
+        differentElementsPage.assertLog(String.format(ELEMENTS.patterns, WIND.text, TRUE.text));
 
         //11 Select checkboxes
         differentElementsPage.selectCheckboxes(WATER);

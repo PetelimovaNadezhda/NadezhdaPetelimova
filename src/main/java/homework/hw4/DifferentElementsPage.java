@@ -55,7 +55,7 @@ public class DifferentElementsPage {
     }
 
     @Step
-    public void checkInterface() {
+    public void checkInterfaceDifferentPage() {
         elements.shouldHaveSize(4);
         metals.shouldHaveSize(4);
         buttons.shouldHaveSize(2);

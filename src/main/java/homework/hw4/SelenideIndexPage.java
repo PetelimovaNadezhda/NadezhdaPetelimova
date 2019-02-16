@@ -13,13 +13,12 @@ import java.util.stream.Stream;
 
 import static com.codeborne.selenide.CollectionCondition.texts;
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.testng.Assert.assertEquals;
 
 public class SelenideIndexPage {
-
-    public static final SelenideElement serviceHeaderMenu = $(".dropdown-toggle");
     @FindBy(css = ".dropdown-menu > li")
     ElementsCollection serviceMenuHeaderSubcategory;
 
@@ -46,6 +45,9 @@ public class SelenideIndexPage {
 
     @FindBy(css = "#login-button")
     SelenideElement loginButton;
+
+    @FindBy(css = ".benefit-icon")
+    ElementsCollection img;
 
     @Step
     public void login(Users user) {
@@ -88,5 +90,10 @@ public class SelenideIndexPage {
     public void openPage(ServiceSubcategory subcategory) {
         serviceMenuHeader.click();
         serviceMenuHeaderSubcategory.findBy(text(subcategory.text)).click();
+    }
+
+    @Step
+    public void checkInterfaceIndexPage() {
+        img.shouldHaveSize(4);
     }
 }

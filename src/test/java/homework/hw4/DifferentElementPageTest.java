@@ -58,7 +58,7 @@ public class DifferentElementPageTest extends SelenideBase {
         indexPage.openPage(DIFFERENT);
 
         //8 Check interface on Different elements page, it contains all needed elements
-        differentElementsPage.checkInterface();
+        differentElementsPage.checkInterfaceDifferentPage();
 
         //9 Assert that there is Right Section
         //10 Assert that there is Left Section
