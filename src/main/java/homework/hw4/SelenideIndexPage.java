@@ -13,8 +13,6 @@ import java.util.stream.Stream;
 
 import static com.codeborne.selenide.CollectionCondition.texts;
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.testng.Assert.assertEquals;
 
@@ -48,6 +46,9 @@ public class SelenideIndexPage {
 
     @FindBy(css = ".benefit-icon")
     ElementsCollection img;
+
+    @FindBy(css = ".benefit")
+    ElementsCollection text;
 
     @Step
     public void login(Users user) {
@@ -95,5 +96,6 @@ public class SelenideIndexPage {
     @Step
     public void checkInterfaceIndexPage() {
         img.shouldHaveSize(4);
+        text.shouldHaveSize(4);
     }
 }
