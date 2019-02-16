@@ -48,7 +48,7 @@ public class SelenideIndexPage {
     SelenideElement loginButton;
 
     @Step
-    void login(Users user) {
+    public void login(Users user) {
         userIcon.click();
         login.sendKeys(user.login);
         pass.sendKeys(user.password);
@@ -56,12 +56,12 @@ public class SelenideIndexPage {
     }
 
     @Step
-    void userNameAssert(Users user) {
+    public void userNameAssert(Users user) {
         userName.shouldHave(text(user.name));
     }
 
     @Step
-    void serviceMenu(ServiceSubcategory[] subcategory) {
+    public void serviceMenu(ServiceSubcategory[] subcategory) {
         serviceMenuLeftSection.click();
         List<String> enumSubcategory = Stream.of(subcategory)
                 .map(e -> e.text)
@@ -70,7 +70,7 @@ public class SelenideIndexPage {
     }
 
     @Step
-    void serviceMenuHeader(ServiceSubcategory[] subcategory) {
+    public void serviceMenuHeader(ServiceSubcategory[] subcategory) {
         serviceMenuHeader.click();
         List<String> enumSubcategory = Stream.of(subcategory)
                 .map(e -> e.text)
@@ -80,12 +80,12 @@ public class SelenideIndexPage {
     }
 
     @Step
-    void checkBrowserTitle(TextMain name) {
+    public void checkBrowserTitle(TextMain name) {
         assertEquals(getWebDriver().getTitle(), name.text);
     }
 
     @Step
-    void openPage(ServiceSubcategory subcategory) {
+    public void openPage(ServiceSubcategory subcategory) {
         serviceMenuHeader.click();
         serviceMenuHeaderSubcategory.findBy(text(subcategory.text)).click();
     }

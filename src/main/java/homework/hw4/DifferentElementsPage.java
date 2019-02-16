@@ -30,32 +30,32 @@ public class DifferentElementsPage {
     ElementsCollection section;
 
     @Step
-    void checkSection() {
+    public void checkSection() {
         section.shouldBe(CollectionCondition.size(2));
     }
 
     @Step
-    void selectCheckboxes(Elements element) {
+    public void selectCheckboxes(Elements element) {
         elements.findBy(text(element.text)).click();
     }
 
     @Step
-    void selectRadio(Metals metal) {
+    public void selectRadio(Metals metal) {
         metals.findBy(text(metal.text)).click();
     }
 
     @Step
-    void selectColor(Colors color) {
+    public void selectColor(Colors color) {
         colors.selectOptionContainingText(color.text);
     }
 
     @Step
-    void assertLog(String str) {
+    public void assertLog(String str) {
         logs.shouldHave(Condition.text(str));
     }
 
     @Step
-    void checkInterface() {
+    public void checkInterface() {
         elements.shouldHaveSize(4);
         metals.shouldHaveSize(4);
         buttons.shouldHaveSize(2);

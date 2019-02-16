@@ -4,7 +4,7 @@ public enum ElementTypes {
     COLORS("Colors"),
     METAL("metal");
 
-    String text;
+    public String text;
 
     ElementTypes(String text) {
         this.text = text;

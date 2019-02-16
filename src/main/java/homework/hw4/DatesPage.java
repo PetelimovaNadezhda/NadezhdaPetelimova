@@ -3,6 +3,7 @@ package homework.hw4;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.FindBy;
 
@@ -21,6 +22,7 @@ public class DatesPage {
     @FindBy(css = ".ui-slider-range")
     SelenideElement sliderRange;
 
+    @Step
     void setRange(int left, int right) {
         JavascriptExecutor js = (JavascriptExecutor) getWebDriver();
         js.executeScript("arguments[0].style.left='" + left + "%';\n" +
@@ -33,6 +35,7 @@ public class DatesPage {
         rightRange.last().click();
     }
 
+    @Step
     public void assertLogRange(int from, int to) {
         logs.shouldHave(Condition.text("Range 2(From):" + from + " link clicked"));
         logs.shouldHave(Condition.text("Range 2(To):" + to + " link clicked"));
