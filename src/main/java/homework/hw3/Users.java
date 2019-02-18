@@ -12,4 +12,13 @@ public enum Users {
         this.password = password;
         this.name = name;
     }
+
+    public static Users getUserByUserName(String username) {
+        for (Users user : values()) {
+            if (user.name.equals(username)) {
+                return user;
+            }
+        }
+        throw new IllegalArgumentException("Wrong user name: " + username);
+    }
 }

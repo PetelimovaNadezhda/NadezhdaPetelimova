@@ -27,7 +27,7 @@ public class EpamSiteSlidersTest extends SelenideBase {
     }
 
     @Feature(value = "Slider")
-    @Story(value = "Slider")
+    @Story(value = "SliderStory")
     @Test
     public void testEpamJdiPage4() {
         //2 Assert Browser title

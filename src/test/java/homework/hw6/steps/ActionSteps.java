@@ -1,18 +1,56 @@
 package homework.hw6.steps;
 
-import base.lesson6.SelenideIndexPage;
-import base.lesson6.User;
+import cucumber.api.PendingException;
+import cucumber.api.java.en.And;
 import cucumber.api.java.en.When;
+import homework.hw3.Users;
+import homework.hw4.*;
 
 public class ActionSteps {
-
-    @When("^I login as user '([^\"]*)' with password '([^\"]*)'$")
-    public void iLoginAsUserWithPassword(String username, String password){
-        new SelenideIndexPage().login(username, password);
+    @When("^I login as user '([^\"]*)'$")
+    public void iLoginAsUser(Users user) {
+        new SelenideIndexPage().login(user);
     }
 
-    @When("^I login as user '([^\"]*)'$")
-    public void iLoginAsUser(User user) {
-        new SelenideIndexPage().login(user);
+    @And("^I click on '([^\"]*)' button in Service dropdown$")
+    public void iClickOnButtonInServiceDropdown(String select) throws Throwable {
+        new SelenideIndexPage().openPage(ServiceSubcategory.valueOf(select));
+        throw new PendingException();
+    }
+
+    //TODO
+    @When("^I click on '([^\"]*)' button in the Left section and check drop down$")
+    public void iClickOnButtonInTheLeftSectionAndCheckDropDown(String button) throws Throwable {
+        new SelenideIndexPage().serviceMenu(ServiceSubcategory.values());
+        throw new PendingException();
+    }
+
+    //TODO
+    @And("^I click on '([^\"]*)' button in the Header and check drop down$")
+    public void iClickOnButtonInTheHeaderAndCheckDropDown(String arg0) throws Throwable {
+        new SelenideIndexPage().serviceMenuHeader(ServiceSubcategory.values());
+        throw new PendingException();
+    }
+
+    @When("^I select in the checkboxes '([^\"]*)'$")
+    public void iSelectInTheCheckboxes(String element) {
+        new DifferentElementsPage().selectNatureElements(Elements.valueOf(element));
+
+    }
+
+    @When("^I select in the radio '([^\"]*)'$")
+    public void iSelectInTheRadio(String element) {
+        new DifferentElementsPage().selectMetal(Metals.valueOf(element));
+
+    }
+
+    @When("^I select in the dropdown '([^\"]*)'$")
+    public void iSelectInTheDropdown(String element) {
+        new DifferentElementsPage().selectColor(Colors.valueOf(element));
+    }
+
+    @When("^I unselect in the checkboxes '([^\"]*)'$")
+    public void iUnselectInTheCheckboxes(String element) {
+        new DifferentElementsPage().selectNatureElements(Elements.valueOf(element));
     }
 }

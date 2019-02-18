@@ -13,6 +13,7 @@ import java.util.stream.Stream;
 
 import static com.codeborne.selenide.CollectionCondition.texts;
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static org.testng.Assert.assertEquals;
 
@@ -49,6 +50,12 @@ public class SelenideIndexPage {
 
     @FindBy(css = ".benefit")
     ElementsCollection text;
+
+    @FindBy(css = ".main-title")
+    SelenideElement mainTitle;
+
+    @FindBy(css = ".main-txt")
+    SelenideElement mainText;
 
     @Step
     public void login(Users user) {
@@ -97,5 +104,7 @@ public class SelenideIndexPage {
     public void checkInterfaceIndexPage() {
         img.shouldHaveSize(4);
         text.shouldHaveSize(4);
+        mainText.shouldBe(visible);
+        mainTitle.shouldBe(visible);
     }
 }

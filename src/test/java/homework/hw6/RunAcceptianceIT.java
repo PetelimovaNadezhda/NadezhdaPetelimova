@@ -12,7 +12,7 @@ import org.testng.annotations.BeforeSuite;
 public class RunAcceptianceIT extends AbstractTestNGCucumberTests {
 
     @BeforeSuite()
-    public void driverSetUp(){
+    public void driverSetUp() {
         Configuration.browser = Browsers.CHROME;
         Configuration.timeout = 5000;
         Configuration.pollingInterval = 300;

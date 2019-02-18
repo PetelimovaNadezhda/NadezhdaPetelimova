@@ -48,59 +48,62 @@ public class DifferentElementPageTest extends SelenideBase {
         //3 Perform login
         indexPage.login(Users.PITER);
 
-        //4 Assert User name in the left-top side of screen that user is loggined
+        //4 Assert User name in the right-top side of screen that user is loggined
         indexPage.userNameAssert(Users.PITER);
 
-        //5 Click on "Service" subcategory in the header and check that drop down contains options
+        //5 Check interface on Home page, it contains all needed elements.
+        indexPage.checkInterfaceIndexPage();
+
+        //6 Click on "Service" subcategory in the header and check that drop down contains options
         indexPage.serviceMenuHeader(ServiceSubcategory.values());
 
-        //6 Click on Service subcategory in the left section and check that drop down contains options
+        //7 Click on Service subcategory in the left section and check that drop down contains options
         indexPage.serviceMenu(ServiceSubcategory.values());
 
-        //7 Open through the header menu Service -> Different Elements Page
+        //8 Open through the header menu Service -> Different Elements Page
         indexPage.openPage(DIFFERENT);
 
-        //8 Check interface on Different elements page, it contains all needed elements
+        //9 Check interface on Different elements page, it contains all needed elements
         differentElementsPage.checkInterfaceDifferentPage();
 
-        //9 Assert that there is Right Section
+        //11 Assert that there is Right Section
         //10 Assert that there is Left Section
         differentElementsPage.checkSection();
 
-        //11 Select checkboxes
-        differentElementsPage.selectCheckboxes(WIND);
+        //12 Select checkboxes
+        differentElementsPage.selectNatureElements(WIND);
 
-        //12 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
+        //13 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
         differentElementsPage.assertLog(String.format(ELEMENTS.patterns, WIND.text, TRUE.text));
 
-        //11 Select checkboxes
-        differentElementsPage.selectCheckboxes(WATER);
+        //12 Select checkboxes
+        differentElementsPage.selectNatureElements(WATER);
 
-        //12 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
+        //13 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
         differentElementsPage.assertLog(String.format(ELEMENTS.patterns, WATER.text, TRUE.text));
 
-        //13 Select radio
-        differentElementsPage.selectRadio(SELEN);
+        //14 Select radio
+        differentElementsPage.selectMetal(SELEN);
 
-        //14 Assert that for radiobutton there is a log row and value is corresponded to the status of radiobutton. 
+        //15 Assert that for radiobutton there is a log row and value is corresponded to the status of radiobutton. 
         differentElementsPage.assertLog(String.format(METAL_COLOR.patterns, METAL.text, SELEN.text));
 
-        //15 Select in dropdown
+        //16 Select in dropdown
         differentElementsPage.selectColor(YELLOW);
 
-        //16 Assert that for dropdown there is a log row and value is corresponded to the selected value. 
+        //17 Assert that for dropdown there is a log row and value is corresponded to the selected value. 
         differentElementsPage.assertLog(String.format(METAL_COLOR.patterns, COLORS.text, YELLOW.text));
 
-        //17 Unselect and assert checkboxes
-        differentElementsPage.selectCheckboxes(WATER);
+        //18 Unselect and assert checkboxes
+        differentElementsPage.selectNatureElements(WATER);
 
-        //18 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
+        //19 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
         differentElementsPage.assertLog(String.format(ELEMENTS.patterns, WATER.text, FALSE.text));
 
-        //17 Unselect and assert checkboxes
-        differentElementsPage.selectCheckboxes(WIND);
+        //18 Unselect and assert checkboxes
+        differentElementsPage.selectNatureElements(WIND);
 
-        //18 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
+        //19 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
         differentElementsPage.assertLog(String.format(ELEMENTS.patterns, WIND.text, FALSE.text));
     }
 }
