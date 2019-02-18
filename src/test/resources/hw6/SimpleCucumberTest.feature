@@ -2,8 +2,8 @@ Feature: Simple Cucumber Test
 
   Scenario: Login verification
     Given I open EPAM JDI site
-    And I login as user 'PITER'
-    Then User name should be as for user 'PITER'
+    And I login as user 'PITER CHAILOVSKII'
+    Then User name should be as for user 'PITER CHAILOVSKII'
     And Interface HomePage should have all needed elements
     When I click on 'Service' button in the Left section and check drop down
     And I click on 'Service' button in the Header and check drop down

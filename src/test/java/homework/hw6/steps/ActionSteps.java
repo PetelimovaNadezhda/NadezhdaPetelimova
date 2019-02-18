@@ -5,11 +5,12 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.When;
 import homework.hw3.Users;
 import homework.hw4.*;
+import homework.hw6.RunAcceptianceIT;
 
-public class ActionSteps {
+public class ActionSteps extends RunAcceptianceIT {
     @When("^I login as user '([^\"]*)'$")
-    public void iLoginAsUser(Users user) {
-        new SelenideIndexPage().login(user);
+    public void iLoginAsUser(String user) {
+        new SelenideIndexPage().login(Users.getUserByUserName(user));
     }
 
     @And("^I click on '([^\"]*)' button in Service dropdown$")

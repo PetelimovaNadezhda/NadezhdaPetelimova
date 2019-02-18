@@ -57,7 +57,7 @@ public class SelenideIndexPage {
     @FindBy(css = ".main-txt")
     SelenideElement mainText;
 
-    @Step
+    @Step("login {user.name}")
     public void login(Users user) {
         userIcon.click();
         login.sendKeys(user.login);

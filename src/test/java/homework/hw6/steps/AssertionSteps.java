@@ -4,6 +4,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import homework.hw3.Users;
 import homework.hw4.*;
+import homework.hw6.RunAcceptianceIT;
 
 import static homework.hw4.BooleanLiterals.FALSE;
 import static homework.hw4.BooleanLiterals.TRUE;
@@ -12,7 +13,7 @@ import static homework.hw4.ElementTypes.METAL;
 import static homework.hw4.LogPatterns.ELEMENTS;
 import static homework.hw4.LogPatterns.METAL_COLOR;
 
-public class AssertionSteps {
+public class AssertionSteps extends RunAcceptianceIT {
     @Then("^User name should be as for user '([^\"]*)'$")
     public void userNameShouldBeAsForUser(String user) {
         new SelenideIndexPage().userNameAssert(Users.getUserByUserName(user));
