@@ -35,12 +35,12 @@ public class DifferentElementsPage {
     }
 
     @Step
-    public void selectCheckboxes(Elements element) {
+    public void selectNatureElements(Elements element) {
         elements.findBy(text(element.text)).click();
     }
 
     @Step
-    public void selectRadio(Metals metal) {
+    public void selectMetal(Metals metal) {
         metals.findBy(text(metal.text)).click();
     }
 

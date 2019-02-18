@@ -65,19 +65,19 @@ public class DifferentElementPageTest extends SelenideBase {
         differentElementsPage.checkSection();
 
         //11 Select checkboxes
-        differentElementsPage.selectCheckboxes(WIND);
+        differentElementsPage.selectNatureElements(WIND);
 
         //12 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
         differentElementsPage.assertLog(String.format(ELEMENTS.patterns, WIND.text, TRUE.text));
 
         //11 Select checkboxes
-        differentElementsPage.selectCheckboxes(WATER);
+        differentElementsPage.selectNatureElements(WATER);
 
         //12 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
         differentElementsPage.assertLog(String.format(ELEMENTS.patterns, WATER.text, TRUE.text));
 
         //13 Select radio
-        differentElementsPage.selectRadio(SELEN);
+        differentElementsPage.selectMetal(SELEN);
 
         //14 Assert that for radiobutton there is a log row and value is corresponded to the status of radiobutton. 
         differentElementsPage.assertLog(String.format(METAL_COLOR.patterns, METAL.text, SELEN.text));
@@ -89,13 +89,13 @@ public class DifferentElementPageTest extends SelenideBase {
         differentElementsPage.assertLog(String.format(METAL_COLOR.patterns, COLORS.text, YELLOW.text));
 
         //17 Unselect and assert checkboxes
-        differentElementsPage.selectCheckboxes(WATER);
+        differentElementsPage.selectNatureElements(WATER);
 
         //18 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
         differentElementsPage.assertLog(String.format(ELEMENTS.patterns, WATER.text, FALSE.text));
 
         //17 Unselect and assert checkboxes
-        differentElementsPage.selectCheckboxes(WIND);
+        differentElementsPage.selectNatureElements(WIND);
 
         //18 Assert that for each checkbox there is an individual log row and value is corresponded to the status of checkbox. 
         differentElementsPage.assertLog(String.format(ELEMENTS.patterns, WIND.text, FALSE.text));
