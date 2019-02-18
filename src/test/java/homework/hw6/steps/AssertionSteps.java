@@ -7,12 +7,10 @@ import homework.hw4.*;
 
 import static homework.hw4.BooleanLiterals.FALSE;
 import static homework.hw4.BooleanLiterals.TRUE;
-import static homework.hw4.Colors.YELLOW;
 import static homework.hw4.ElementTypes.COLORS;
 import static homework.hw4.ElementTypes.METAL;
 import static homework.hw4.LogPatterns.ELEMENTS;
 import static homework.hw4.LogPatterns.METAL_COLOR;
-import static homework.hw4.Metals.SELEN;
 
 public class AssertionSteps {
     @Then("^User name should be as for user '([^\"]*)'$")
@@ -37,7 +35,7 @@ public class AssertionSteps {
 
     //TODO
     @Then("^log update: '([^\"]*)' is '([^\"]*)'$")
-    public void logUpdateWATERIsTRUE(String what, String how) {
+    public void logUpdate(String what, String how) {
         switch (how) {
             case "TRUE":
                 new DifferentElementsPage().assertLog(String.format(ELEMENTS.patterns, Elements.valueOf(what).text, TRUE.text));
