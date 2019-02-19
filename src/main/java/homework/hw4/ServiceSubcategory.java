@@ -1,5 +1,7 @@
 package homework.hw4;
 
+import java.util.List;
+
 public enum ServiceSubcategory {
     SUPPORT("Support"),
     DATES("Dates"),
@@ -14,5 +16,24 @@ public enum ServiceSubcategory {
 
     ServiceSubcategory(String text) {
         this.text = text;
+    }
+
+    public static ServiceSubcategory getServiceSubcategory(String value) {
+        for (ServiceSubcategory val : ServiceSubcategory.values()) {
+            if (val.text.equals(value))
+                return val;
+        }
+        return null;
+    }
+
+
+    public static ServiceSubcategory[] valueOfList(List<String> expected) {
+        ServiceSubcategory[] result = new ServiceSubcategory[expected.size()];
+        int i = 0;
+        for (String exp : expected) {
+            result[i] = ServiceSubcategory.getServiceSubcategory(exp);
+            i++;
+        }
+        return result;
     }
 }

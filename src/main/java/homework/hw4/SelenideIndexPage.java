@@ -80,6 +80,18 @@ public class SelenideIndexPage {
     }
 
     @Step
+    public void serviceMenuString(List<String> subcategory) {
+        serviceMenuLeftSection.click();
+        serviceMenuChildrenLeftSection.first(8).shouldHave(texts(subcategory));
+    }
+
+    @Step
+    public void serviceMenuHeaderString(List<String> subcategory) {
+        serviceMenuHeader.click();
+        serviceMenuHeaderSubcategory.shouldHave(texts(subcategory));
+    }
+
+    @Step
     public void serviceMenuHeader(ServiceSubcategory[] subcategory) {
         serviceMenuHeader.click();
         List<String> enumSubcategory = Stream.of(subcategory)
@@ -97,7 +109,9 @@ public class SelenideIndexPage {
     @Step
     public void openPage(ServiceSubcategory subcategory) {
         serviceMenuHeader.click();
-        serviceMenuHeaderSubcategory.findBy(text(subcategory.text)).click();
+        SelenideElement by = serviceMenuHeaderSubcategory.findBy(text(subcategory.text.toUpperCase()));
+        if (!by.isDisplayed()) serviceMenuHeader.click();
+        by.click();
     }
 
     @Step

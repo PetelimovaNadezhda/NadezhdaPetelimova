@@ -1,57 +1,55 @@
 package homework.hw6.steps;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.When;
 import homework.hw3.Users;
-import homework.hw4.*;
-import homework.hw6.RunAcceptianceIT;
+import homework.hw4.Colors;
+import homework.hw4.Elements;
+import homework.hw4.Metals;
+import homework.hw4.ServiceSubcategory;
 
-public class ActionSteps extends RunAcceptianceIT {
+import java.util.List;
+
+public class ActionSteps{
     @When("^I login as user '([^\"]*)'$")
     public void iLoginAsUser(String user) {
-        new SelenideIndexPage().login(Users.getUserByUserName(user));
+        NavigationStep.indexPage.login(Users.getUserByUserName(user));
     }
 
     @And("^I click on '([^\"]*)' button in Service dropdown$")
     public void iClickOnButtonInServiceDropdown(String select) throws Throwable {
-        new SelenideIndexPage().openPage(ServiceSubcategory.valueOf(select));
-        throw new PendingException();
+        NavigationStep.indexPage.openPage(ServiceSubcategory.getServiceSubcategory(select));
     }
 
-    //TODO
-    @When("^I click on '([^\"]*)' button in the Left section and check drop down$")
-    public void iClickOnButtonInTheLeftSectionAndCheckDropDown(String button) throws Throwable {
-        new SelenideIndexPage().serviceMenu(ServiceSubcategory.values());
-        throw new PendingException();
+    @When("^I click on Service button in the Left section and check drop down (.*)$")
+    public void iClickOnButtonInTheLeftSectionAndCheckDropDown(List<String> expected) throws Throwable {
+        NavigationStep.indexPage.serviceMenuString(expected);
     }
 
-    //TODO
-    @And("^I click on '([^\"]*)' button in the Header and check drop down$")
-    public void iClickOnButtonInTheHeaderAndCheckDropDown(String arg0) throws Throwable {
-        new SelenideIndexPage().serviceMenuHeader(ServiceSubcategory.values());
-        throw new PendingException();
+    @And("^I click on Service button in the Header and check drop down (.*)$")
+    public void iClickOnButtonInTheHeaderAndCheckDropDown(List<String> expected) throws Throwable {
+        NavigationStep.indexPage.serviceMenuHeaderString(expected);
     }
 
     @When("^I select in the checkboxes '([^\"]*)'$")
     public void iSelectInTheCheckboxes(String element) {
-        new DifferentElementsPage().selectNatureElements(Elements.valueOf(element));
+        NavigationStep.differentElementsPage.selectNatureElements(Elements.valueOf(element));
 
     }
 
     @When("^I select in the radio '([^\"]*)'$")
     public void iSelectInTheRadio(String element) {
-        new DifferentElementsPage().selectMetal(Metals.valueOf(element));
+        NavigationStep.differentElementsPage.selectMetal(Metals.valueOf(element));
 
     }
 
     @When("^I select in the dropdown '([^\"]*)'$")
     public void iSelectInTheDropdown(String element) {
-        new DifferentElementsPage().selectColor(Colors.valueOf(element));
+        NavigationStep.differentElementsPage.selectColor(Colors.valueOf(element));
     }
 
     @When("^I unselect in the checkboxes '([^\"]*)'$")
     public void iUnselectInTheCheckboxes(String element) {
-        new DifferentElementsPage().selectNatureElements(Elements.valueOf(element));
+        NavigationStep.differentElementsPage.selectNatureElements(Elements.valueOf(element));
     }
 }

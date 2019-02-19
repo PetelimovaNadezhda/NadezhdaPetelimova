@@ -42,7 +42,7 @@ public class DifferentElementPageTest extends SelenideBase {
         getWebDriver().manage().window().maximize();
         indexPage = page(SelenideIndexPage.class);
         differentElementsPage = page(DifferentElementsPage.class);
-    }
+}
 
     @Feature(value = "Interface")
     @Story(value = "InterfaceStory")
