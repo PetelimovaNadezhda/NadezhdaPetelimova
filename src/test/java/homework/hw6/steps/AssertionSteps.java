@@ -6,7 +6,7 @@ import homework.hw3.Users;
 import homework.hw4.Colors;
 import homework.hw4.Elements;
 import homework.hw4.Metals;
-import homework.hw6.Table;
+import homework.hw6.UserTable;
 
 import java.util.List;
 
@@ -85,7 +85,7 @@ public class AssertionSteps {
     }
 
     @And("^User table contains following values:$")
-    public void userTableContainsFollowingValues(List<Table> table) {
+    public void userTableContainsFollowingValues(List<UserTable> table) {
         NavigationStep.userTablePage.equalsTable(table);
     }
 

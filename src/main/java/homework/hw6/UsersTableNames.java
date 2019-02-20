@@ -1,6 +1,6 @@
 package homework.hw6;
 
-public enum UsersTable {
+public enum UsersTableNames{
     ROMAN("Roman", "roman"),
     IVAN("Sergey Ivan", "ivan"),
     VLAD("Vladzimir", "vlad"),
@@ -11,8 +11,16 @@ public enum UsersTable {
     public final String name;
     public final String id;
 
-    UsersTable(String name, String id) {
+        UsersTableNames(String name, String id) {
         this.id = id;
         this.name = name;
+    }
+
+    public static UsersTableNames getUsersTable(String value) {
+        for (UsersTableNames val : UsersTableNames.values()) {
+            if (val.name.equals(value))
+                return val;
+        }
+        return null;
     }
 }

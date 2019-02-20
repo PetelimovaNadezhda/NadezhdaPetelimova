@@ -10,7 +10,6 @@ import org.testng.Assert;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.$;
-import static homework.hw6.Table.TEMPLATE;
 import static java.util.stream.Collectors.toList;
 import static org.testng.Assert.assertTrue;
 
@@ -38,21 +37,14 @@ public class UserTablePage {
     SelenideElement logs;
 
     @Step
-    public void equalsTable(List<Table> expectedTable) {
-        List<Table> collect = table.stream().skip(1).map(e -> new Table(
+    public void equalsTable(List<UserTable> expectedTable) {
+        List<UserTable> collect = table.stream().skip(1).map(e -> new UserTable(
                         e.$("td", 0).getText(),
                         e.$("td a").getText(),
                         e.$("td span").getText())
         ).collect(toList());
 
         Assert.assertTrue(expectedTable.containsAll(collect));
-
-//        String tableOnSite = table.texts().toString().replaceAll("\n", " ");
-//        for (Table lineExpected : expectedTable) {
-//            assertTrue(tableOnSite.contains(lineExpected.getNumber().toString()));
-//            assertTrue(tableOnSite.contains(lineExpected.getUser()));
-//            assertTrue(tableOnSite.contains(lineExpected.getDescription()));
-//        }
     }
 
     @Step
@@ -82,26 +74,8 @@ public class UserTablePage {
 
     @Step
     public void selectVip(String name) {
-        switch (name) {
-            case ("Roman"):
-                $("#roman").click();
-                break;
-            case ("Sergey Ivan"):
-                $("#ivan").click();
-                break;
-            case ("Vladzimir"):
-                $("#vlad").click();
-                break;
-            case ("Helen Bennett"):
-                $("#helen").click();
-                break;
-            case ("Yoshi Tannamuri"):
-                $("#yoshi").click();
-                break;
-            case ("Giovanni Rovelli"):
-                $("#gio").click();
-                break;
-        }
+        UsersTableNames user = UsersTableNames.getUsersTable(name);
+        $("#"+ user.id).click();
     }
 
     @Step

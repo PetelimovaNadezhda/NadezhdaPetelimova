@@ -6,7 +6,7 @@ import static java.lang.String.*;
 
 // TODO Basically, this is not the 'Table' at all.
 // TODO What is the business sense on this entity ?
-public class Table {
+public class UserTable {
     public static final String TEMPLATE = "%s%s%s";
 
     private Integer numberType;
@@ -25,7 +25,7 @@ public class Table {
         return numberType;
     }
 
-    public Table(String numberType, String user, String description) {
+    public UserTable(String numberType, String user, String description) {
         this.numberType = Integer.parseInt(numberType);
         this.user = user;
         this.description = description.replaceAll("[\n ]", " ");
@@ -35,7 +35,7 @@ public class Table {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Table table = (Table) o;
+        UserTable table = (UserTable) o;
         return Objects.equals(numberType, table.numberType) &&
                 Objects.equals(user, table.user) &&
                 Objects.equals(description, table.description);
