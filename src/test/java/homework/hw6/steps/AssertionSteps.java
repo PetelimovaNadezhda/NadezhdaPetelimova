@@ -1,25 +1,26 @@
 package homework.hw6.steps;
 
-import cucumber.api.PendingException;
-import cucumber.api.Transpose;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
 import homework.hw3.Users;
-import homework.hw4.*;
+import homework.hw4.Colors;
+import homework.hw4.Elements;
+import homework.hw4.Metals;
 import homework.hw6.Table;
 
 import java.util.List;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static homework.hw3.Html.HTML_USER_TABLE;
 import static homework.hw4.BooleanLiterals.FALSE;
 import static homework.hw4.BooleanLiterals.TRUE;
 import static homework.hw4.ElementTypes.COLORS;
 import static homework.hw4.ElementTypes.METAL;
 import static homework.hw4.LogPatterns.ELEMENTS;
 import static homework.hw4.LogPatterns.METAL_COLOR;
+import static org.testng.Assert.assertEquals;
 
-public class AssertionSteps{
+public class AssertionSteps {
     @Then("^User name should be as for user '([^\"]*)'$")
     public void userNameShouldBeAsForUser(String user) {
         NavigationStep.indexPage.userNameAssert(Users.getUserByUserName(user));
@@ -89,7 +90,7 @@ public class AssertionSteps{
     }
 
     @Then("^I log row has \"([^\"]*)\" text in log section$")
-    public void logRowHasTextInLogSection(String s) throws Throwable {
+    public void logRowHasTextInLogSection(String s) {
         NavigationStep.userTablePage.assertLog(s);
     }
 
@@ -100,7 +101,7 @@ public class AssertionSteps{
 
     @Then("^User Table page is opened$")
     public void userTablePageIsOpened() {
-        getWebDriver().getCurrentUrl().equals("https://epam.github.io/JDI/user-table.html");
+        assertEquals(getWebDriver().getCurrentUrl(), HTML_USER_TABLE.htmlName);
 
     }
 }

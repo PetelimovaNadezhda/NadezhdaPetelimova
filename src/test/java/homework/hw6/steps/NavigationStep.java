@@ -18,7 +18,7 @@ public class NavigationStep {
     public static UserTablePage userTablePage;
 
     @Given("^I am on Home Page$")
-    public void i_open_EPAM_JDI_site() throws Throwable {
+    public void i_open_EPAM_JDI_site() {
         open(INDEX_HTML_URL.htmlName);
         getWebDriver().manage().window().maximize();
         indexPage = page(SelenideIndexPage.class);

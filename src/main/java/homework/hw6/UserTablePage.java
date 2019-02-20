@@ -1,16 +1,13 @@
 package homework.hw6;
 
-import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
 
-import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selenide.$;
 import static org.testng.Assert.assertTrue;
 
