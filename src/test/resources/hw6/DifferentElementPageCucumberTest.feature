@@ -1,7 +1,7 @@
-Feature: Simple Cucumber Test
+Feature: Different Elements Cucumber Test
 
-  Scenario: Login verification
-    Given I open EPAM JDI site
+  Scenario: Different Elements Page Test
+    Given I am on Home Page
     And I login as user 'PITER CHAILOVSKII'
     Then User name should be as for user 'PITER CHAILOVSKII'
     And Interface HomePage should have all needed elements

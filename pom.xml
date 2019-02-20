@@ -90,7 +90,7 @@
                         </property>
                     </systemProperties>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src\test\resources\testngHm5.xml</suiteXmlFile>
+                        <suiteXmlFile>src\test\resources\testngHm6.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
                 <dependencies>

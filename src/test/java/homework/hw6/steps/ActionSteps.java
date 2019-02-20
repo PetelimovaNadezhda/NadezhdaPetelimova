@@ -1,5 +1,6 @@
 package homework.hw6.steps;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.When;
 import homework.hw3.Users;
@@ -34,7 +35,6 @@ public class ActionSteps{
     @When("^I select in the checkboxes '([^\"]*)'$")
     public void iSelectInTheCheckboxes(String element) {
         NavigationStep.differentElementsPage.selectNatureElements(Elements.valueOf(element));
-
     }
 
     @When("^I select in the radio '([^\"]*)'$")
@@ -51,5 +51,20 @@ public class ActionSteps{
     @When("^I unselect in the checkboxes '([^\"]*)'$")
     public void iUnselectInTheCheckboxes(String element) {
         NavigationStep.differentElementsPage.selectNatureElements(Elements.valueOf(element));
+    }
+
+    @When("^I click on Service button in Header$")
+    public void iClickOnButtonInHeader() throws Throwable {
+        NavigationStep.indexPage.clickOnService();
+    }
+
+    @When("^I select 'vip' checkbox for \"([^\"]*)\"$")
+    public void iSelectVipCheckboxFor(String name) throws Throwable {
+        NavigationStep.userTablePage.selectVip(name);
+    }
+
+    @When("^I click on dropdown in column Type for user Roman$")
+    public void iClickOnDropdownInColumnTypeForUserRoman() {
+        NavigationStep.userTablePage.clickDropdown();
     }
 }

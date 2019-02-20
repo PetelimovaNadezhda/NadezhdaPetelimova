@@ -1,10 +1,17 @@
 package homework.hw6.steps;
 
+import cucumber.api.PendingException;
+import cucumber.api.Transpose;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
 import homework.hw3.Users;
 import homework.hw4.*;
+import homework.hw6.Table;
 
+import java.util.List;
+
+import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static homework.hw4.BooleanLiterals.FALSE;
 import static homework.hw4.BooleanLiterals.TRUE;
 import static homework.hw4.ElementTypes.COLORS;
@@ -33,7 +40,6 @@ public class AssertionSteps{
         NavigationStep.differentElementsPage.checkInterfaceDifferentPage();
     }
 
-    //TODO
     @Then("^log update: '([^\"]*)' is '([^\"]*)'$")
     public void logUpdate(String what, String how) {
         switch (how) {
@@ -50,5 +56,51 @@ public class AssertionSteps{
                 NavigationStep.differentElementsPage.assertLog(String.format(METAL_COLOR.patterns, COLORS.text, Colors.valueOf(what).text));
                 break;
         }
+    }
+
+    @And("^(\\d+) NumberType Dropdowns are displayed on Users Table on User Table Page$")
+    public void numbertypeDropdownsAreDisplayedOnUsersTableOnUserTablePage(int size) {
+        NavigationStep.userTablePage.checkInterfaceDropdown(size);
+    }
+
+    @And("^(\\d+) User names are displayed on Users Table on User Table Page$")
+    public void userNamesAreDisplayedOnUsersTableOnUserTablePage(int size) {
+        NavigationStep.userTablePage.checkInterfaceNames(size);
+    }
+
+    @And("^(\\d+) Description images are displayed on Users Table on User Table Page$")
+    public void descriptionImagesAreDisplayedOnUsersTableOnUserTablePage(int size) {
+        NavigationStep.userTablePage.checkInterfaceImgs(size);
+    }
+
+    @And("^(\\d+) Description texts under images are displayed on Users Table on User Table Page$")
+    public void descriptionTextsUnderImagesAreDisplayedOnUsersTableOnUserTablePage(int size) {
+        NavigationStep.userTablePage.checkInterfaceText(size);
+    }
+
+    @And("^(\\d+) checkboxes are displayed on Users Table on User Table Page$")
+    public void checkboxesAreDisplayedOnUsersTableOnUserTablePage(int size) {
+        NavigationStep.userTablePage.checkInterfaceCheckbox(size);
+    }
+
+    @And("^User table contains following values:$")
+    public void userTableContainsFollowingValues(List<Table> table) {
+        NavigationStep.userTablePage.equalsTable(table);
+    }
+
+    @Then("^I log row has \"([^\"]*)\" text in log section$")
+    public void logRowHasTextInLogSection(String s) throws Throwable {
+        NavigationStep.userTablePage.assertLog(s);
+    }
+
+    @Then("^droplist contains values$")
+    public void droplistContainsValues(List<String> list) {
+        NavigationStep.userTablePage.checkInterfaceDroplist(list);
+    }
+
+    @Then("^User Table page is opened$")
+    public void userTablePageIsOpened() {
+        getWebDriver().getCurrentUrl().equals("https://epam.github.io/JDI/user-table.html");
+
     }
 }

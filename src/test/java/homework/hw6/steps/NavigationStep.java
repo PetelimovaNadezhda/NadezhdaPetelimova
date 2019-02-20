@@ -1,9 +1,9 @@
 package homework.hw6.steps;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.Given;
 import homework.hw4.DifferentElementsPage;
 import homework.hw4.SelenideIndexPage;
+import homework.hw6.UserTablePage;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.page;
@@ -15,13 +15,14 @@ public class NavigationStep {
 
     public static SelenideIndexPage indexPage;
     public static DifferentElementsPage differentElementsPage;
+    public static UserTablePage userTablePage;
 
-    @Given("^I open EPAM JDI site$")
+    @Given("^I am on Home Page$")
     public void i_open_EPAM_JDI_site() throws Throwable {
         open(INDEX_HTML_URL.htmlName);
         getWebDriver().manage().window().maximize();
-
         indexPage = page(SelenideIndexPage.class);
         differentElementsPage = page(DifferentElementsPage.class);
+        userTablePage = page(UserTablePage.class);
     }
 }

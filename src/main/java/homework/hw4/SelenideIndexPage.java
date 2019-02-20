@@ -121,4 +121,8 @@ public class SelenideIndexPage {
         mainText.shouldBe(visible);
         mainTitle.shouldBe(visible);
     }
+
+    public void clickOnService() {
+        serviceMenuHeader.click();
+    }
 }
