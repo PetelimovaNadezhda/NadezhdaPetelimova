@@ -5,10 +5,13 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.$;
+import static homework.hw6.Table.TEMPLATE;
+import static java.util.stream.Collectors.toList;
 import static org.testng.Assert.assertTrue;
 
 public class UserTablePage {
@@ -36,12 +39,20 @@ public class UserTablePage {
 
     @Step
     public void equalsTable(List<Table> expectedTable) {
-        String tableOnSite = table.texts().toString().replaceAll("\n", " ");
-        for (Table lineExpected : expectedTable) {
-            assertTrue(tableOnSite.contains(lineExpected.getNumber().toString()));
-            assertTrue(tableOnSite.contains(lineExpected.getUser()));
-            assertTrue(tableOnSite.contains(lineExpected.getDescription()));
-        }
+        List<Table> collect = table.stream().skip(1).map(e -> new Table(
+                        e.$("td", 0).getText(),
+                        e.$("td a").getText(),
+                        e.$("td span").getText())
+        ).collect(toList());
+
+        Assert.assertTrue(expectedTable.containsAll(collect));
+
+//        String tableOnSite = table.texts().toString().replaceAll("\n", " ");
+//        for (Table lineExpected : expectedTable) {
+//            assertTrue(tableOnSite.contains(lineExpected.getNumber().toString()));
+//            assertTrue(tableOnSite.contains(lineExpected.getUser()));
+//            assertTrue(tableOnSite.contains(lineExpected.getDescription()));
+//        }
     }
 
     @Step
