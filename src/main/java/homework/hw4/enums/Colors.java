@@ -1,4 +1,4 @@
-package homework.hw4;
+package homework.hw4.enums;
 
 public enum Colors {
     RED("Red"),

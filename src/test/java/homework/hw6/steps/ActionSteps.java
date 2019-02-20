@@ -2,11 +2,11 @@ package homework.hw6.steps;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.When;
-import homework.hw3.Users;
-import homework.hw4.Colors;
-import homework.hw4.Elements;
-import homework.hw4.Metals;
-import homework.hw4.ServiceSubcategory;
+import homework.hw3.enums.Users;
+import homework.hw4.enums.Colors;
+import homework.hw4.enums.Elements;
+import homework.hw4.enums.Metals;
+import homework.hw4.enums.ServiceSubcategory;
 
 import java.util.List;
 

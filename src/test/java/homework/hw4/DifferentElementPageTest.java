@@ -1,9 +1,12 @@
 package homework.hw4;
 
 import base.SelenideBase;
-import homework.hw3.TextMain;
-import homework.hw3.Users;
+import homework.hw3.enums.TextMain;
+import homework.hw3.enums.Users;
 
+import homework.hw4.enums.ServiceSubcategory;
+import homework.hw4.po.DifferentElementsPage;
+import homework.hw4.po.SelenideIndexPage;
 import io.qameta.allure.Story;
 import io.qameta.allure.Feature;
 import org.testng.annotations.BeforeMethod;
@@ -11,28 +14,28 @@ import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static homework.hw3.Html.INDEX_HTML_URL;
-import static homework.hw4.BooleanLiterals.FALSE;
-import static homework.hw4.BooleanLiterals.TRUE;
-import static homework.hw4.Colors.*;
-import static homework.hw4.ElementTypes.COLORS;
-import static homework.hw4.ElementTypes.METAL;
-import static homework.hw4.Elements.*;
-import static homework.hw4.Metals.*;
-import static homework.hw4.LogPatterns.*;
-import static homework.hw4.ServiceSubcategory.DIFFERENT;
+import static homework.hw3.enums.Html.INDEX_HTML_URL;
+import static homework.hw4.enums.BooleanLiterals.FALSE;
+import static homework.hw4.enums.BooleanLiterals.TRUE;
+import static homework.hw4.enums.Colors.*;
+import static homework.hw4.po.ElementTypes.COLORS;
+import static homework.hw4.po.ElementTypes.METAL;
+import static homework.hw4.enums.Elements.*;
+import static homework.hw4.enums.Metals.*;
+import static homework.hw4.enums.LogPatterns.*;
+import static homework.hw4.enums.ServiceSubcategory.DIFFERENT;
 
 public class DifferentElementPageTest extends SelenideBase {
-    private homework.hw4.SelenideIndexPage indexPage;
-    private homework.hw4.DifferentElementsPage differentElementsPage;
+    private SelenideIndexPage indexPage;
+    private DifferentElementsPage differentElementsPage;
 
     @BeforeMethod
     public void initTest() {
         //1 Open test site by URL
         open(INDEX_HTML_URL.htmlName);
         getWebDriver().manage().window().maximize();
-        indexPage = page(homework.hw4.SelenideIndexPage.class);
-        differentElementsPage = page(homework.hw4.DifferentElementsPage.class);
+        indexPage = page(SelenideIndexPage.class);
+        differentElementsPage = page(DifferentElementsPage.class);
     }
 
     @Feature(value = "Interface")

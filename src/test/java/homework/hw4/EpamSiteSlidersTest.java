@@ -1,8 +1,10 @@
 package homework.hw4;
 
 import base.SelenideBase;
-import homework.hw3.TextMain;
-import homework.hw3.Users;
+import homework.hw3.enums.TextMain;
+import homework.hw3.enums.Users;
+import homework.hw4.po.DatesPage;
+import homework.hw4.po.SelenideIndexPage;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.testng.annotations.BeforeMethod;
@@ -10,8 +12,8 @@ import org.testng.annotations.Test;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static homework.hw3.Html.INDEX_HTML_URL;
-import static homework.hw4.ServiceSubcategory.DATES;
+import static homework.hw3.enums.Html.INDEX_HTML_URL;
+import static homework.hw4.enums.ServiceSubcategory.DATES;
 
 public class EpamSiteSlidersTest extends SelenideBase {
     private SelenideIndexPage indexPage;

@@ -1,11 +1,12 @@
-package homework.hw6;
+package homework.hw6.po;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import homework.hw6.Superhero;
+import homework.hw6.enums.SuperheroNames;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
-import org.testng.Assert;
 
 import java.util.List;
 
@@ -38,8 +39,8 @@ public class UserTablePage {
     SelenideElement logs;
 
     @Step
-    public void equalsTable(List<UserTable> expectedTable) {
-        List<UserTable> collect = table.stream().skip(1).map(e -> new UserTable(
+    public void equalsTable(List<Superhero> expectedTable) {
+        List<Superhero> collect = table.stream().skip(1).map(e -> new Superhero(
                         e.$("td", 0).getText(),
                         e.$("td a").getText(),
                         e.$("td span").getText())
@@ -75,7 +76,7 @@ public class UserTablePage {
 
     @Step
     public void selectVip(String name) {
-        UsersTableNames user = UsersTableNames.getUsersTable(name);
+        SuperheroNames user = SuperheroNames.getUsersTable(name);
         $("#"+ user.id).click();
     }
 

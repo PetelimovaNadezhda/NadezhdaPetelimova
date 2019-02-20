@@ -2,22 +2,22 @@ package homework.hw6.steps;
 
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
-import homework.hw3.Users;
-import homework.hw4.Colors;
-import homework.hw4.Elements;
-import homework.hw4.Metals;
-import homework.hw6.UserTable;
+import homework.hw3.enums.Users;
+import homework.hw4.enums.Colors;
+import homework.hw4.enums.Elements;
+import homework.hw4.enums.Metals;
+import homework.hw6.Superhero;
 
 import java.util.List;
 
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static homework.hw3.Html.HTML_USER_TABLE;
-import static homework.hw4.BooleanLiterals.FALSE;
-import static homework.hw4.BooleanLiterals.TRUE;
-import static homework.hw4.ElementTypes.COLORS;
-import static homework.hw4.ElementTypes.METAL;
-import static homework.hw4.LogPatterns.ELEMENTS;
-import static homework.hw4.LogPatterns.METAL_COLOR;
+import static homework.hw3.enums.Html.HTML_USER_TABLE;
+import static homework.hw4.enums.BooleanLiterals.FALSE;
+import static homework.hw4.enums.BooleanLiterals.TRUE;
+import static homework.hw4.po.ElementTypes.COLORS;
+import static homework.hw4.po.ElementTypes.METAL;
+import static homework.hw4.enums.LogPatterns.ELEMENTS;
+import static homework.hw4.enums.LogPatterns.METAL_COLOR;
 import static org.testng.Assert.assertEquals;
 
 public class AssertionSteps {
@@ -85,7 +85,7 @@ public class AssertionSteps {
     }
 
     @And("^User table contains following values:$")
-    public void userTableContainsFollowingValues(List<UserTable> table) {
+    public void userTableContainsFollowingValues(List<Superhero> table) {
         NavigationStep.userTablePage.equalsTable(table);
     }
 

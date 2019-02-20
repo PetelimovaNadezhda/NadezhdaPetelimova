@@ -1,4 +1,4 @@
-package homework.hw3;
+package homework.hw3.enums;
 
 public enum TextForImg {
     PRACTICES_PICTURE_TEXT("To include good practices\n" +

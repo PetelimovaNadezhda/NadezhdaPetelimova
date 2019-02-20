@@ -1,9 +1,10 @@
-package homework.hw4;
+package homework.hw4.po;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import homework.hw3.TextMain;
-import homework.hw3.Users;
+import homework.hw3.enums.TextMain;
+import homework.hw3.enums.Users;
+import homework.hw4.enums.ServiceSubcategory;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 

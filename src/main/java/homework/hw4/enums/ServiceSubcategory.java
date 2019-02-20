@@ -1,4 +1,4 @@
-package homework.hw4;
+package homework.hw4.enums;
 
 import java.util.List;
 

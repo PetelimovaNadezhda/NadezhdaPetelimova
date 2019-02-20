@@ -2,11 +2,11 @@ package homework.hw5;
 
 import base.LFailure;
 import base.SelenideBase;
-import homework.hw3.TextMain;
-import homework.hw3.Users;
-import homework.hw4.DifferentElementsPage;
-import homework.hw4.SelenideIndexPage;
-import homework.hw4.ServiceSubcategory;
+import homework.hw3.enums.TextMain;
+import homework.hw3.enums.Users;
+import homework.hw4.po.DifferentElementsPage;
+import homework.hw4.po.SelenideIndexPage;
+import homework.hw4.enums.ServiceSubcategory;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
 import org.testng.annotations.BeforeMethod;
@@ -16,18 +16,18 @@ import org.testng.annotations.Test;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.Selenide.page;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static homework.hw3.Html.INDEX_HTML_URL;
-import static homework.hw4.BooleanLiterals.FALSE;
-import static homework.hw4.BooleanLiterals.TRUE;
-import static homework.hw4.Colors.YELLOW;
-import static homework.hw4.ElementTypes.COLORS;
-import static homework.hw4.ElementTypes.METAL;
-import static homework.hw4.Elements.WATER;
-import static homework.hw4.Elements.WIND;
-import static homework.hw4.LogPatterns.ELEMENTS;
-import static homework.hw4.LogPatterns.METAL_COLOR;
-import static homework.hw4.Metals.SELEN;
-import static homework.hw4.ServiceSubcategory.DIFFERENT;
+import static homework.hw3.enums.Html.INDEX_HTML_URL;
+import static homework.hw4.enums.BooleanLiterals.FALSE;
+import static homework.hw4.enums.BooleanLiterals.TRUE;
+import static homework.hw4.enums.Colors.YELLOW;
+import static homework.hw4.po.ElementTypes.COLORS;
+import static homework.hw4.po.ElementTypes.METAL;
+import static homework.hw4.enums.Elements.WATER;
+import static homework.hw4.enums.Elements.WIND;
+import static homework.hw4.enums.LogPatterns.ELEMENTS;
+import static homework.hw4.enums.LogPatterns.METAL_COLOR;
+import static homework.hw4.enums.Metals.SELEN;
+import static homework.hw4.enums.ServiceSubcategory.DIFFERENT;
 
 
 @Listeners({ LFailure.class })

@@ -1,9 +1,12 @@
-package homework.hw4;
+package homework.hw4.po;
 
 import com.codeborne.selenide.CollectionCondition;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import homework.hw4.enums.Colors;
+import homework.hw4.enums.Elements;
+import homework.hw4.enums.Metals;
 import io.qameta.allure.Step;
 import org.openqa.selenium.support.FindBy;
 

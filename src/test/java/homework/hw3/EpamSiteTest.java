@@ -1,6 +1,8 @@
 package homework.hw3;
 
 import base.SeleniumBase;
+import homework.hw3.enums.*;
+import homework.hw3.po.IndexPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;

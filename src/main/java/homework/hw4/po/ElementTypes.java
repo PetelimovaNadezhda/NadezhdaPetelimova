@@ -1,4 +1,4 @@
-package homework.hw4;
+package homework.hw4.po;
 
 public enum ElementTypes {
     COLORS("Colors"),

@@ -1,4 +1,4 @@
-package homework.hw3;
+package homework.hw3.enums;
 
 public enum Html {
     INDEX_HTML_URL("https://epam.github.io/JDI/"),

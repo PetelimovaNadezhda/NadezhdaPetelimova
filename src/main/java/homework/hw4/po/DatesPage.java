@@ -1,4 +1,4 @@
-package homework.hw4;
+package homework.hw4.po;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
@@ -23,7 +23,7 @@ public class DatesPage {
     SelenideElement sliderRange;
 
     @Step
-    void setRange(int left, int right) {
+    public void setRange(int left, int right) {
         JavascriptExecutor js = (JavascriptExecutor) getWebDriver();
         js.executeScript("arguments[0].style.left='" + left + "%';\n" +
                 "arguments[0].childNodes[0].innerHTML='" + left + "';\n", leftRange.first());

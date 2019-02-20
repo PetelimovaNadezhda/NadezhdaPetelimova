@@ -1,4 +1,4 @@
-package homework.hw3;
+package homework.hw3.enums;
 
 public enum Users {
     PITER("epam", "1234", "PITER CHAILOVSKII");

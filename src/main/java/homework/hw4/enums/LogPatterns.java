@@ -1,4 +1,4 @@
-package homework.hw4;
+package homework.hw4.enums;
 
 public enum LogPatterns {
     ELEMENTS("%s: condition changed to %s"),

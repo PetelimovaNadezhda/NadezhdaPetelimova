@@ -1,4 +1,4 @@
-package homework.hw3;
+package homework.hw3.enums;
 
 public enum MenuButton {
     HOME_BUTTON("HOME"),

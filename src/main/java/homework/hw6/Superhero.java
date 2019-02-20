@@ -6,10 +6,10 @@ import static java.lang.String.*;
 
 // TODO Basically, this is not the 'Table' at all.
 // TODO What is the business sense on this entity ?
-public class UserTable {
+public class Superhero {
     public static final String TEMPLATE = "%s%s%s";
 
-    private Integer numberType;
+    private Integer number;
     private String user;
     private String description;
 
@@ -22,11 +22,11 @@ public class UserTable {
     }
 
     public Integer getNumber() {
-        return numberType;
+        return number;
     }
 
-    public UserTable(String numberType, String user, String description) {
-        this.numberType = Integer.parseInt(numberType);
+    public Superhero(String numberType, String user, String description) {
+        this.number = Integer.parseInt(numberType);
         this.user = user;
         this.description = description.replaceAll("[\n ]", " ");
     }
@@ -35,20 +35,20 @@ public class UserTable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        UserTable table = (UserTable) o;
-        return Objects.equals(numberType, table.numberType) &&
+        Superhero table = (Superhero) o;
+        return Objects.equals(number, table.number) &&
                 Objects.equals(user, table.user) &&
                 Objects.equals(description, table.description);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(numberType, user, description);
+        return Objects.hash(number, user, description);
     }
 
     @Override
     public String toString() {
-        return format(TEMPLATE, numberType, user, description)
+        return format(TEMPLATE, number, user, description)
                 .replaceAll("[\n ]", "");
     }
 }
