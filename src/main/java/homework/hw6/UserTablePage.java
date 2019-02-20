@@ -11,6 +11,7 @@ import java.util.List;
 
 import static com.codeborne.selenide.Selenide.$;
 import static java.util.stream.Collectors.toList;
+import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class UserTablePage {
@@ -44,7 +45,7 @@ public class UserTablePage {
                         e.$("td span").getText())
         ).collect(toList());
 
-        Assert.assertTrue(expectedTable.containsAll(collect));
+       assertEquals(expectedTable, collect);
     }
 
     @Step
