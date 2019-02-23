@@ -43,7 +43,7 @@ public class UserTablePage {
         List<Superhero> collect = table.stream().skip(1).map(e -> new Superhero(
                         e.$("td", 0).getText(),
                         e.$("td a").getText(),
-                        e.$("td span").getText())
+                        e.$("td span").getText().replaceAll("\n", " "))
         ).collect(toList());
 
        assertEquals(expectedTable, collect);
