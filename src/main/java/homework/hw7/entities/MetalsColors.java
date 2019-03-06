@@ -2,7 +2,6 @@ package homework.hw7.entities;
 
 import lombok.AllArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
