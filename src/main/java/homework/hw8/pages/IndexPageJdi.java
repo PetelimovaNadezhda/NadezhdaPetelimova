@@ -1,10 +1,10 @@
-package homework.hw7.pages;
+package homework.hw8.pages;
 
 import com.epam.jdi.light.elements.complex.WebList;
-import homework.hw7.entities.User;
-import homework.hw7.forms.LoginForm;
 import com.epam.jdi.light.elements.composite.WebPage;
 import com.epam.jdi.light.ui.html.common.Icon;
+import homework.hw8.entities.User;
+import homework.hw8.forms.LoginForm;
 import org.openqa.selenium.support.FindBy;
 
 public class IndexPageJdi extends WebPage {
