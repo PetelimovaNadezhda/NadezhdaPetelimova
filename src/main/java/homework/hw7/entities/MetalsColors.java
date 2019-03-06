@@ -10,7 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 public class MetalsColors {
 
-    public static MetalsColors checkForm = new MetalsColors(new ArrayList<String>(Arrays.asList("3", "8")), new ArrayList<String>(Arrays.asList("Water", "Fire")), "Red", "Selen", new ArrayList<String>(Arrays.asList("Vegetables", "Cucumber", "Tomato")));
+    public static MetalsColors checkForm = new MetalsColors(Arrays.asList("3", "8"), Arrays.asList("Water", "Fire"), "Red", "Selen",Arrays.asList("Vegetables", "Cucumber", "Tomato"));
 
     public List<String> summary;
     public List<String> element;
