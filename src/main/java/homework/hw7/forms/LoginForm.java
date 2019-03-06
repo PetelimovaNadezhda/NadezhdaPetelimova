@@ -1,6 +1,6 @@
-package base.jdi.forms;
+package homework.hw7.forms;
 
-import base.jdi.entities.User;
+import homework.hw7.entities.User;
 import com.epam.jdi.light.elements.composite.Form;
 import com.epam.jdi.light.ui.html.common.Button;
 import com.epam.jdi.light.ui.html.common.TextField;

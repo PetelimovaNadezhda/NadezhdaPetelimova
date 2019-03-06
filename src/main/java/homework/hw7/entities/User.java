@@ -1,4 +1,4 @@
-package base.jdi.entities;
+package homework.hw7.entities;
 
 import lombok.AllArgsConstructor;
 

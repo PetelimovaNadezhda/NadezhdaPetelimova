@@ -25,10 +25,10 @@
 
         <dependency>
             <groupId>com.epam.jdi</groupId>
+            <!-- <artifactId>hw7-uitest-web</artifactId> -->
             <artifactId>jdi-light-html</artifactId>
             <version>LATEST</version>
         </dependency>
-
 
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
         <dependency>
