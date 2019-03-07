@@ -11,30 +11,24 @@ import static org.testng.Assert.assertEquals;
 public class MetalsColorsPageJdi extends WebPage {
     MetalsColorsForm metalsColorsForm;
 
-    public void select(MetalsColors checkForm) {
-        for (String val : checkForm.summary)
-            metalsColorsForm.summary.select(val);
-
-        metalsColorsForm.elements.get(0).click();
-        metalsColorsForm.elements.get(3).click();
-
-        metalsColorsForm.colors.select(checkForm.color);
-
-        metalsColorsForm.metals.select(checkForm.metal);
-
-        for (String val : checkForm.vegetables)
-            metalsColorsForm.vegetables.select(val);
-
-        metalsColorsForm.submit.click();
+    public void submitForm(MetalsColors metalsColors) {
+        metalsColorsForm.submit(metalsColors);
     }
 
-    public void log(MetalsColors checkForm) {
+    public void log(MetalsColors metalsColors) {
         int sum = 0;
-        for (String val : checkForm.summary)
+        for (String val : metalsColors.summary)
             sum += Integer.valueOf(val);
 
-        StringBuilder log = new StringBuilder("Summary: " + sum + "\n"+ "Elements: " + Arrays.toString(checkForm.element.toArray()).replaceAll("[\\[\\]]", "") + "\n" + "Color: " + checkForm.color + "\n" + "Metal: " + checkForm.metal + "\n" + "Vegetables: " + Arrays.toString(checkForm.vegetables.subList(1,3).toArray()).replaceAll("[\\[\\]]", ""));
-        assertEquals(metalsColorsForm.log.getText(), log.toString());
+
+        // TODO So complicated, it will be better with List<String>
+        // TODO TODO Besides, you can override toString method for  MetalsColors class...
+        String log = "Summary: " + sum + "\n"
+                + "Elements: " + Arrays.toString(metalsColors.element.toArray()).replaceAll("[\\[\\]]", "") + "\n"
+                + "Color: " + metalsColors.color + "\n" + "Metal: " + metalsColors.metal + "\n"
+                + "Vegetables: " + Arrays.toString(metalsColors.vegetables.subList(1, 3).toArray()).replaceAll("[\\[\\]]", "");
+
+        assertEquals(metalsColorsForm.log.getText(), log);
     }
 }
 

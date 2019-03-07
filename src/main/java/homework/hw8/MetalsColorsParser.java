@@ -13,6 +13,8 @@ import java.util.List;
 
 import static homework.hw8.enums.Nature.setId;
 
+// TODO Take a look on Gson library and TypeToken approach.
+// TODO Be careful about data structure, that used in json file.
 public class MetalsColorsParser {
     public static List<MetalsColors> dataMetalsColors() {
         List<String> summary = new ArrayList<>();

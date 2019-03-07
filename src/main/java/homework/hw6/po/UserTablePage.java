@@ -26,7 +26,7 @@ public class UserTablePage {
     @FindBy(css = "#user-table > tbody > tr > td > img")
     ElementsCollection descriptionImg;
 
-    @FindBy(css = "#user-table > tbody > tr > td > select")
+    @FindBy(css = "#user-table > tbody > tr > td > submitForm")
     ElementsCollection dropdown;
 
     @FindBy(css = "#user-table > tbody > tr > td > a")

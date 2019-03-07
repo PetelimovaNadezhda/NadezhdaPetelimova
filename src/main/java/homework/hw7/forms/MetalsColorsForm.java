@@ -35,4 +35,19 @@ public class MetalsColorsForm extends Form<MetalsColors> {
 
     @FindBy(css = ".info-panel-body-result")
     public Text log;
+
+    @Override
+    public void submit(MetalsColors metalsColors) {
+        for (String val : metalsColors.summary) {
+            summary.select(val);
+        }
+        elements.get(0).click();
+        elements.get(3).click();
+        colors.select(metalsColors.color);
+        metals.select(metalsColors.metal);
+        for (String val : metalsColors.vegetables) {
+            vegetables.select(val);
+        }
+        submit.click();
+    }
 }
