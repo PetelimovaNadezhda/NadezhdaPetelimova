@@ -23,12 +23,11 @@ public class JdiCheckMetalsColorsPage {
         JDISite.indexPageJdi.open();
         JDISite.indexPageJdi.login(PETER);
 
-        // TODO This page should be opened via UI, rather than directly.
         JDISite.indexPageJdi.openMetalsColorsPage();
 
         // TODO Basically, you should have only one single method, that can be used for form filling/submitting.
         // TODO For example, Site.page.form.submit(entity). Entity should have all necessary information.
-        JDISite.metalColorsPageJdi.select(checkForm);
+        JDISite.metalColorsPageJdi.submitForm(checkForm);
         // !TODO
 
         // TODO This method should get exactly the same entity tha has used for form filling.
