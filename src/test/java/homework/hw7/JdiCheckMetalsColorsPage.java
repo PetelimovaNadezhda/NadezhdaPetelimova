@@ -3,6 +3,7 @@ package homework.hw7;
 import com.epam.jdi.light.driver.WebDriverFactory;
 import com.epam.jdi.light.settings.WebSettings;
 import com.epam.jdi.light.ui.html.PageFactory;
+import homework.hw7.enums.Nature;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
@@ -19,18 +20,13 @@ public class JdiCheckMetalsColorsPage {
     }
 
     @Test
-    public void tableTestJdi() {
+    public void metalsColorsPageTestJdi() {
         JDISite.indexPageJdi.open();
         JDISite.indexPageJdi.login(PETER);
-
         JDISite.indexPageJdi.openMetalsColorsPage();
-
-        // TODO Basically, you should have only one single method, that can be used for form filling/submitting.
-        // TODO For example, Site.page.form.submit(entity). Entity should have all necessary information.
+        JDISite.metalColorsPageJdi.skip();
+        Nature.setId();
         JDISite.metalColorsPageJdi.submitForm(checkForm);
-        // !TODO
-
-        // TODO This method should get exactly the same entity tha has used for form filling.
         JDISite.metalColorsPageJdi.log(checkForm);
     }
 

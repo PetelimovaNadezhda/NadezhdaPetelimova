@@ -9,6 +9,7 @@ import com.epam.jdi.light.ui.html.common.Button;
 import com.epam.jdi.light.ui.html.common.Text;
 import com.epam.jdi.light.ui.html.complex.RadioButtons;
 import homework.hw7.entities.MetalsColors;
+import homework.hw7.enums.Nature;
 
 public class MetalsColorsForm extends Form<MetalsColors> {
 
@@ -38,16 +39,25 @@ public class MetalsColorsForm extends Form<MetalsColors> {
 
     @Override
     public void submit(MetalsColors metalsColors) {
-        for (String val : metalsColors.summary) {
-            summary.select(val);
-        }
-        elements.get(0).click();
-        elements.get(3).click();
+        for (Integer val : metalsColors.summary)
+            summary.select(val.toString());
+
+        for (String val : metalsColors.elements)
+            elements.get(Nature.idElement.get(val)).click();
+
         colors.select(metalsColors.color);
-        metals.select(metalsColors.metal);
-        for (String val : metalsColors.vegetables) {
+
+        metals.select(metalsColors.metals);
+
+        for (String val : metalsColors.vegetables)
             vegetables.select(val);
-        }
+
         submit.click();
+
+        for (String val : metalsColors.elements)
+            elements.get(Nature.idElement.get(val)).click();
+
+        for (String val : metalsColors.vegetables)
+            vegetables.select(val);
     }
 }
