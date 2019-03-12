@@ -47,6 +47,7 @@ public class JdiCheckMetalsColorsPage {
     @Test(dataProvider = "getData")
     public void metalsColorsPageSubmitTestJdi(MetalsColors dataMetalsColors) {
         JDISite.metalColorsPageJdi.submitForm(dataMetalsColors);
+        JDISite.metalColorsPageJdi.cleanUpForm(dataMetalsColors);
         JDISite.metalColorsPageJdi.log(dataMetalsColors);
     }
 

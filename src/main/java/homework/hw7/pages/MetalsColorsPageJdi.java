@@ -4,9 +4,6 @@ import com.epam.jdi.light.elements.composite.WebPage;
 import homework.hw7.entities.MetalsColors;
 import homework.hw7.forms.MetalsColorsForm;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.testng.Assert.assertEquals;
 
 public class MetalsColorsPageJdi extends WebPage {
@@ -14,6 +11,11 @@ public class MetalsColorsPageJdi extends WebPage {
 
     public void submitForm(MetalsColors metalsColors) {
         metalsColorsForm.submit(metalsColors);
+    }
+
+
+    public void cleanUpForm(MetalsColors metalsColors) {
+        metalsColorsForm.clean(metalsColors);
     }
 
     public void log(MetalsColors metalsColors) {
