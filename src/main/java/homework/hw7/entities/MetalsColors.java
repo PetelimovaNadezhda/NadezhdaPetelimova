@@ -5,8 +5,10 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Getter
@@ -27,4 +29,19 @@ public class MetalsColors {
     public String color;
     public String metals;
     public List<String> vegetables;
+
+    public String asLogString() {
+        return String.join("", new ArrayList<String>() {{
+            add("Summary: ");
+            add(Integer.toString(summary.stream().mapToInt(i -> i).sum()));
+            add("\nElements: ");
+            add(String.join(", ", elements));
+            add("\nColor: ");
+            add(color);
+            add("\nMetal: ");
+            add(metals);
+            add("\nVegetables: ");
+            add(String.join(", ", vegetables));
+        }});
+    }
 }

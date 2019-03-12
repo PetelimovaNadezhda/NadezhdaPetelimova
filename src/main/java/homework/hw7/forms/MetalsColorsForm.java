@@ -54,10 +54,13 @@ public class MetalsColorsForm extends Form<MetalsColors> {
 
         submit.click();
 
+        // TODO This should not me here, take a look on method name
+        // TODO If you want to clean up the form, you should create special method.
         for (String val : metalsColors.elements)
             elements.get(Nature.idElement.get(val)).click();
 
         for (String val : metalsColors.vegetables)
             vegetables.select(val);
+        // !TODO
     }
 }

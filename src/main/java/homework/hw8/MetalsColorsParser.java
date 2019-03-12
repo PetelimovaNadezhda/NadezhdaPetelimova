@@ -12,14 +12,13 @@ import java.lang.reflect.Type;
 import java.util.Collection;
 import java.util.HashMap;
 
-// TODO Take a look on Gson library and TypeToken approach.
-// TODO Be careful about data structure, that used in json file.
 public class MetalsColorsParser {
     public static Collection<MetalsColors> dataMetalsColors() throws FileNotFoundException {
         Gson gson = new Gson();
         Type fooType = new TypeToken<HashMap<String, MetalsColors>>() {
         }.getType();
-        JsonElement jsonData = new JsonParser().parse(new FileReader("src/main/resources/hw8/JDI_ex8_metalsColorsDataSet.json"));
+        JsonElement jsonData = new JsonParser()
+                .parse(new FileReader("src/main/resources/hw8/JDI_ex8_metalsColorsDataSet.json"));
         HashMap<String, MetalsColors> data = gson.fromJson(jsonData, fooType);
         return data.values();
     }
