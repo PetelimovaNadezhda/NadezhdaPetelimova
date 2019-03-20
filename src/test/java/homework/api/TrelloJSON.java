@@ -1,10 +1,10 @@
 package homework.api;
 
 import io.restassured.RestAssured;
+import org.apache.http.HttpStatus;
 import org.testng.annotations.Test;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 
 import static homework.api.TrelloApi.successResponse;
 import static java.lang.String.format;
@@ -20,7 +20,10 @@ public class TrelloJSON {
                 .body(format("{\"name\": \"%s\"}", boardName))
                 .log().everything()
                 .post("boards/?name=name&defaultLabels=true&defaultLists=true&keepFromSource=none&prefs_permissionLevel=private&prefs_voting=disabled&prefs_comments=members&prefs_invitations=members&prefs_selfJoin=true&prefs_cardCovers=true&prefs_background=blue&prefs_cardAging=regular")
-                .prettyPeek();
+                .prettyPeek()
+                .then()
+                .statusCode(HttpStatus.SC_OK)
+                .statusLine("HTTP/1.1 200 OK");
 }
 
     @Test

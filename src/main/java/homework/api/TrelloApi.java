@@ -9,7 +9,6 @@ import org.apache.http.HttpStatus;
 import io.restassured.response.Response;
 
 import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.HashMap;
 
 import static org.hamcrest.Matchers.lessThan;
@@ -36,7 +35,7 @@ public class TrelloApi {
             return RestAssured.with()
                     .queryParams(trelloApi.params)
                     .log().all()
-                    .get(YANDEX_SPELLER_API_URI).prettyPeek();
+                    .get(TRELLO_API_URI).prettyPeek();
         }
     }
     public static ApiBuilder with() {
@@ -44,8 +43,7 @@ public class TrelloApi {
         return new ApiBuilder(api);
     }
 
-    public static final String YANDEX_SPELLER_API_URI =
-            "https://api.trello.com/1";
+    public static final String TRELLO_API_URI = "https://api.trello.com/1";
 
 
     //set base request and response specifications tu use in tests
@@ -62,7 +60,7 @@ public class TrelloApi {
                 .addQueryParam("key", "e2f7d12ed03353803f8cefdadbe0b696")
                 .addQueryParam("token", "24e04a2725169e6aa36aa2b989f1219aa1aa341c0d44a027ca8ca738b8af3f6b")
                 .setContentType("application/json")
-                .setBaseUri(YANDEX_SPELLER_API_URI)
+                .setBaseUri(TRELLO_API_URI)
                 .build();
     }
 
