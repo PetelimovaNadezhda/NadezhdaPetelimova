@@ -19,7 +19,7 @@ public class TrelloJSON {
                 .given(TrelloApi.baseRequestConfiguration())
                 .body(format("{\"name\": \"%s\"}", boardName))
                 .log().everything()
-                .post("/1/cards")
+                .post("boards/?name=name&defaultLabels=true&defaultLists=true&keepFromSource=none&prefs_permissionLevel=private&prefs_voting=disabled&prefs_comments=members&prefs_invitations=members&prefs_selfJoin=true&prefs_cardCovers=true&prefs_background=blue&prefs_cardAging=regular")
                 .prettyPeek();
 }
 

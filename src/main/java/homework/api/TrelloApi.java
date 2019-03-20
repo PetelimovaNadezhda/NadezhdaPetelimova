@@ -8,6 +8,8 @@ import io.restassured.specification.ResponseSpecification;
 import org.apache.http.HttpStatus;
 import io.restassured.response.Response;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 
 import static org.hamcrest.Matchers.lessThan;
@@ -43,7 +45,7 @@ public class TrelloApi {
     }
 
     public static final String YANDEX_SPELLER_API_URI =
-            "https://api.trello.com/1/members/me/boards/5c8ceb1d09764d100f188768/cards?key=e2f7d12ed03353803f8cefdadbe0b696&token=24e04a2725169e6aa36aa2b989f1219aa1aa341c0d44a027ca8ca738b8af3f6b}";
+            "https://api.trello.com/1";
 
 
     //set base request and response specifications tu use in tests
@@ -54,12 +56,13 @@ public class TrelloApi {
                 .build();
     }
 
-    public static RequestSpecification baseRequestConfiguration() {
+    public static RequestSpecification baseRequestConfiguration() throws UnsupportedEncodingException {
         return new RequestSpecBuilder()
                 .setRelaxedHTTPSValidation()
                 .addQueryParam("key", "e2f7d12ed03353803f8cefdadbe0b696")
                 .addQueryParam("token", "24e04a2725169e6aa36aa2b989f1219aa1aa341c0d44a027ca8ca738b8af3f6b")
                 .setContentType("application/json")
+                .setBaseUri(YANDEX_SPELLER_API_URI)
                 .build();
     }
 
