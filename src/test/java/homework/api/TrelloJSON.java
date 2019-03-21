@@ -1,37 +1,131 @@
 package homework.api;
 
+import beans.TrelloAnswer;
 import io.restassured.RestAssured;
-import org.apache.http.HttpStatus;
+import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
-import java.io.UnsupportedEncodingException;
+import java.io.IOException;
 
-import static homework.api.TrelloApi.successResponse;
-import static java.lang.String.format;
+import static homework.api.ConstantTrello.*;
+import static homework.api.TrelloApi.*;
 import static org.apache.commons.lang.RandomStringUtils.random;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 
 public class TrelloJSON {
-    String boardName = "Lorem ipsum board " + random(12, true, true);
+    @Test
+    public void createNewBoardTest(){
+        String boardName = "Lorem ipsum board " + random(12, true, true);
+        Response answer = TrelloApi.with()
+                .createName(boardName)
+                .callPostBoardApi();
+        answer.then().specification(successResponse());
+        TrelloAnswer answers =  TrelloApi.getTrelloAnswers(answer);
+        assertThat(answers.name, equalTo(boardName));
+        ID_BOARD = answers.id;
+    }
 
     @Test
-    public void createNewBoardTest() throws UnsupportedEncodingException {
+    public void createNewBoardTestWithLists() throws IOException {
+        String boardName = "Lorem ipsum board " + random(12, true, true);
+        Response answer = TrelloApi.with()
+                .createListsforBoard()
+                .createName(boardName)
+                .callPostBoardApi();
+        answer.then().specification(successResponse());
+        TrelloAnswer answers =  TrelloApi.getTrelloAnswers(answer);
+        assertThat(answers.name, equalTo(boardName));
+        ID_BOARD = answers.id;
+    }
+
+
+    @Test
+    public void createNewBoardTestWithDescriptions() throws IOException {
+        String boardName = "Lorem ipsum board " + random(12, true, true);
+        String desc = "Lorem ipsum desc " + random(12, true, true);
+        Response answer = TrelloApi.with()
+                .createDescforBoard(desc)
+                .createName(boardName)
+                .callPostBoardApi();
+        answer.then().specification(successResponse());
+        TrelloAnswer answers =  TrelloApi.getTrelloAnswers(answer);
+        assertThat(answers.name, equalTo(boardName+",name"));
+        ID_BOARD = answers.id;
+    }
+
+
+    @Test
+    public void deleteBoardTestById() {
+        int count = TrelloApi.getBoardsList().size();
         RestAssured
-                .given(TrelloApi.baseRequestConfiguration())
-                .body(format("{\"name\": \"%s\"}", boardName))
+                .given(baseRequestConfiguration())
                 .log().everything()
-                .post("boards/?name=name&defaultLabels=true&defaultLists=true&keepFromSource=none&prefs_permissionLevel=private&prefs_voting=disabled&prefs_comments=members&prefs_invitations=members&prefs_selfJoin=true&prefs_cardCovers=true&prefs_background=blue&prefs_cardAging=regular")
+                .delete(BOARDS + ID_BOARD)
                 .prettyPeek()
                 .then()
-                .statusCode(HttpStatus.SC_OK)
-                .statusLine("HTTP/1.1 200 OK");
-}
+                .specification(successResponse());
+        assertThat(TrelloApi.getBoardsList().size(), equalTo(count-1));
+    }
+
 
     @Test
-    public void reachBuilderUsage(){
-        TrelloApi.with()
-                .boardsGet(boardName)
-                .callApi()
-                .then().specification(successResponse())
-                .log().everything();
+    public void createCardWithNameTest() {
+        String name = NAME_CARD;
+        Response answer = TrelloApi.with()
+                .createName(NAME_CARD)
+                .callPostCardApi();
+        answer.then().specification(successResponse());
     }
+
+    @Test
+    public void createCardWithPosTest() {
+        String name = NAME_CARD;
+        Response answer = TrelloApi.with()
+                .createName(NAME_CARD)
+                .createCardPos(POS_CARD)
+                .callPostCardApi();
+        answer.then().specification(successResponse());
+    }
+
+    @Test
+    public void deleteCardByIDTest() {
+        RestAssured
+                .given(baseRequestConfiguration())
+                .log().everything()
+                .delete(CARDS + CARDS_ID)
+                .prettyPeek()
+                .then()
+                .specification(successResponse());
+    }
+
+    @Test
+    public void createChecklistsTest() {
+        Response answer = TrelloApi.with()
+                .getIDCard()
+                .callPostChecklistApi();
+        answer.then().specification(successResponse());
+    }
+
+
+    @Test
+    public void createChecklistsWithNameTest() {
+        String name = "Lorem ipsum checklist " + random(12, true, true);
+        Response answer = TrelloApi.with()
+                .createName(name)
+                .getIDCard()
+                .callPostChecklistApi();
+        answer.then().specification(successResponse());
+    }
+
+    @Test
+    public void createCheckItemTest() {
+        String name = "Lorem ipsum checkItems " + random(12, true, true);
+        Response answer = TrelloApi.with()
+                .getIDCheckList()
+                .createName(name)
+                .callPostChecklistApi();
+        answer.then().specification(successResponse());
+    }
+
 }
