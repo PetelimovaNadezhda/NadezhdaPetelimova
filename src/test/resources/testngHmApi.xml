@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="TestNg Suite">
+    <test name="Cucumber test">
+        <packages>
+            <package name="homework.api" />
+        </packages>
+    </test>
+</suite>

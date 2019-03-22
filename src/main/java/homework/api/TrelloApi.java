@@ -2,6 +2,7 @@ package homework.api;
 
 import beans.TrelloAnswer;
 import beans.TrelloAnswerCard;
+import beans.TrelloAnswerChecklist;
 import beans.TrelloAnswerList;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -29,26 +30,46 @@ public class TrelloApi {
     public static RequestSpecification baseRequestConfiguration() {
         return new RequestSpecBuilder()
                 .setRelaxedHTTPSValidation()
-                .addQueryParam("key", "e2f7d12ed03353803f8cefdadbe0b696")
-                .addQueryParam("token", "24e04a2725169e6aa36aa2b989f1219aa1aa341c0d44a027ca8ca738b8af3f6b")
+                .addQueryParam("key", KEY)
+                .addQueryParam("token", TOKEN)
                 .setContentType("application/json")
                 .setBaseUri(TRELLO_API_URI)
                 .build();
     }
 
-    public static List<TrelloAnswer> getListTrelloAnswers(Response response){
-        return new Gson().fromJson(response.asString().trim(), new TypeToken<List<TrelloAnswer>>(){}.getType());
+    public static List<TrelloAnswer> getListTrelloAnswers(Response response) {
+        return new Gson().fromJson(response.asString().trim(), new TypeToken<List<TrelloAnswer>>() {
+        }.getType());
     }
 
-    public static List<TrelloAnswerCard> getListTrelloAnswersCard(Response response){
-        return new Gson().fromJson(response.asString().trim(), new TypeToken<List<TrelloAnswerCard>>(){}.getType());
+    public static List<TrelloAnswerCard> getListTrelloAnswersCards(Response response) {
+        return new Gson().fromJson(response.asString().trim(), new TypeToken<List<TrelloAnswerCard>>() {
+        }.getType());
     }
 
-    public static List<TrelloAnswerList> getListTrelloAnswersList(Response response){
-        return new Gson().fromJson(response.asString().trim(), new TypeToken<List<TrelloAnswerCard>>(){}.getType());
+    public static TrelloAnswerCard getListTrelloAnswersCard(Response response) {
+        return new Gson().fromJson(response.asString().trim(), new TypeToken<TrelloAnswerCard>() {
+        }.getType());
     }
 
-    public static TrelloAnswer getTrelloAnswers(Response response){
-        return new Gson().fromJson(response.asString().trim(), new TypeToken<TrelloAnswer>(){}.getType());
+    public static List<TrelloAnswerList> getListTrelloAnswersList(Response response) {
+        return new Gson().fromJson(response.asString().trim(), new TypeToken<List<TrelloAnswerList>>() {
+        }.getType());
+    }
+
+    public static TrelloAnswer getTrelloAnswers(Response response) {
+        return new Gson().fromJson(response.asString().trim(), new TypeToken<TrelloAnswer>() {
+        }.getType());
+    }
+
+
+    public static List<TrelloAnswerChecklist> getListTrelloAnswersChecklist(Response response) {
+        return new Gson().fromJson(response.asString().trim(), new TypeToken<List<TrelloAnswerChecklist>>() {
+        }.getType());
+    }
+
+    public static TrelloAnswerChecklist getListTrelloAnswersChecklistObject(Response response) {
+        return new Gson().fromJson(response.asString().trim(), new TypeToken<TrelloAnswerChecklist>() {
+        }.getType());
     }
 }

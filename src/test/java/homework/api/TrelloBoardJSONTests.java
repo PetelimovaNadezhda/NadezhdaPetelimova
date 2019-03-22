@@ -2,9 +2,10 @@ package homework.api;
 
 import beans.TrelloAnswer;
 import beans.TrelloAnswerCard;
+import beans.TrelloAnswerList;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.util.List;
 
@@ -16,8 +17,14 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 public class TrelloBoardJSONTests {
+    @AfterMethod
+    public void afterTest() {
+        TrelloApiBuilder.params.clear();
+        TrelloApiBuilder.pathParams.clear();
+    }
+
     @Test
-    public String createNewBoardTest() {
+    public void createNewBoardTest() {
         String boardName = "Lorem ipsum board " + random(12, true, true);
         Response answer = TrelloApiBuilder.with()
                 .createName(boardName)
@@ -33,12 +40,10 @@ public class TrelloBoardJSONTests {
         }
 
         assertThat("Board creation", true, equalTo(key));
-
-        return answers.id;
     }
 
     @Test
-    public String createNewBoardTestWithLists() {
+    public void createNewBoardTestWithLists() {
         String boardName = "Lorem ipsum board " + random(12, true, true);
         Response answer = TrelloApiBuilder.with()
                 .createListsforBoard()
@@ -48,22 +53,21 @@ public class TrelloBoardJSONTests {
         TrelloAnswer answers = getTrelloAnswers(answer);
 
         List<TrelloAnswer> allBoard = getBoardsList();
-        List<TrelloAnswerCard> allCards = null;
+        List<TrelloAnswerList> allLists = null;
         for (TrelloAnswer element : allBoard) {
             if (element.name.equals(boardName)) {
-                allCards = getBoardCardsByIdTest(element.id);
+                allLists = getBoardListsByIdTest(element.id);
             }
         }
 
-        assertThat(allCards.size(), equalTo(3));
-
-        return answers.id;
+        assertThat(allLists.size(), equalTo(3));
     }
 
     @Test
-    public String createNewBoardTestWithDescriptions() {
+    public void createNewBoardTestWithDescriptions() {
         String boardName = "Lorem ipsum board " + random(12, true, true);
         String desc = "Lorem ipsum desc " + random(12, true, true);
+
         Response answer = TrelloApiBuilder.with()
                 .createDescforBoard(desc)
                 .createName(boardName)
@@ -78,8 +82,6 @@ public class TrelloBoardJSONTests {
                 descActual = element.desc;
         }
         assertThat(descActual, equalTo(desc));
-
-        return answers.id;
     }
 
     @Test
@@ -96,5 +98,19 @@ public class TrelloBoardJSONTests {
                 .specification(successResponse());
 
         assertThat(getBoardsList().size(), equalTo(count - 1));
+    }
+
+    @AfterMethod
+    public void deleteBoardTestByIdLorem() {
+        for (TrelloAnswer trelloAnswer : getBoardsList()) {
+            if (trelloAnswer.name.contains("Lorem"))
+                RestAssured
+                        .given(baseRequestConfiguration())
+                        .log().everything()
+                        .delete(BOARDS + trelloAnswer.id)
+                        .prettyPeek()
+                        .then()
+                        .specification(successResponse());
+        }
     }
 }

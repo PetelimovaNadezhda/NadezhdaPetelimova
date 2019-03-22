@@ -10,8 +10,8 @@ import static homework.api.TrelloApi.baseRequestConfiguration;
 import static homework.api.TrelloGetMetodsApi.*;
 
 public class TrelloApiBuilder {
-    private static HashMap<String, Object> params = new HashMap<>();
-    private static HashMap<String, String> pathParams = new HashMap<>();
+    static HashMap<String, Object> params = new HashMap<>();
+    static HashMap<String, String> pathParams = new HashMap<>();
 
     public static class ApiBuilder {
         TrelloApiBuilder trelloApi;
@@ -20,53 +20,41 @@ public class TrelloApiBuilder {
             trelloApi = gcApi;
         }
 
-        public ApiBuilder getBoardCardById(String id) {
-            trelloApi.params.put("idBoard", id);
-            return this;
-        }
-
         public ApiBuilder createName(String name) {
-            trelloApi.params.put("name", name);
+            params.put("name", name);
             return this;
         }
 
         public ApiBuilder createCardPos(String posCard) {
-            trelloApi.params.put("pos", posCard);
+            params.put("pos", posCard);
             return this;
         }
 
         public ApiBuilder createListsforBoard() {
-            trelloApi.params.put("defaultLists", true);
+            params.put("defaultLists", true);
             return this;
         }
 
         public ApiBuilder createDescforBoard(String desc) {
-            trelloApi.params.put("desc", desc);
+            params.put("desc", desc);
             return this;
         }
 
-        public ApiBuilder getIDCard() {
-            trelloApi.params.put("idCard", CARDS_ID);
+        public ApiBuilder getIDCard(String idCard) {
+            params.put("idCard", idCard);
             return this;
         }
 
         public ApiBuilder getID(String id) {
-            trelloApi.pathParams.put("id", id);
+            pathParams.put("id", id);
             return this;
         }
 
 
-        public ApiBuilder getidList() {
-            String idList = getBoardListsByIdTest(generateBoard().id).get(0).id;
-            trelloApi.pathParams.put("idList", idList);
+        public ApiBuilder getidList(String idBoard) {
+            String idList = getBoardListsByIdTest(idBoard).get(0).id;
+            params.put("idList", idList);
             return this;
-        }
-
-        public Response callGetCardsApi() {
-            return RestAssured.given(baseRequestConfiguration()).with()
-                    .log().all()
-                    .get(TRELLO_API_URI + BOARDS + trelloApi.params.get("idBoard") + CARDS)
-                    .prettyPeek();
         }
 
         public Response callPostCardApi() {
@@ -77,22 +65,32 @@ public class TrelloApiBuilder {
                     .prettyPeek();
         }
 
+
+        public Response callGetApi(String entities, String get) {
+            return RestAssured.given(baseRequestConfiguration()).with()
+                    .queryParams(params)
+                    .pathParams(pathParams)
+                    .log().all()
+                    .get(entities + "{id}" + get)
+                    .prettyPeek();
+        }
+
         public Response callPostBoardApi() {
             return RestAssured.given(baseRequestConfiguration()).with()
                     .queryParams(params)
                     .pathParams(pathParams)
                     .log().all()
-                    .post(BOARDS + "{id}")
+                    .post(BOARDS)
                     .prettyPeek();
         }
 
 
-        public Response callPostChecklistApi() {
+        public Response callPostChecklistApi(String get) {
             return RestAssured.given(baseRequestConfiguration()).with()
                     .queryParams(params)
                     .pathParams(pathParams)
                     .log().all()
-                    .post(CHECKLISTS + "/{id}/checkItems")
+                    .post(CHECKLISTS + "{id}" + get)
                     .prettyPeek();
         }
     }

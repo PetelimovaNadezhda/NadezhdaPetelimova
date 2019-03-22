@@ -160,7 +160,7 @@
                         </property>
                     </systemProperties>
                     <suiteXmlFiles>
-                        <suiteXmlFile>src\test\resources\testngHm6.xml</suiteXmlFile>
+                        <suiteXmlFile>src\test\resources\testngHmApi.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
                 <dependencies>
