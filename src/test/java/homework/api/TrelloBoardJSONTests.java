@@ -1,34 +1,28 @@
 package homework.api;
 
 import beans.TrelloAnswer;
-import beans.TrelloAnswerCard;
 import beans.TrelloAnswerList;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import org.testng.annotations.*;
+import org.testng.annotations.Test;
 
 import java.util.List;
 
-import static homework.api.ConstantTrello.BOARDS;
+import static homework.api.ConstantTrello.*;
 import static homework.api.TrelloApi.*;
-import static homework.api.TrelloGetMetodsApi.*;
+import static homework.api.TrelloGetAndGenerateMetodsApi.*;
 import static org.apache.commons.lang.RandomStringUtils.random;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-public class TrelloBoardJSONTests {
-    @AfterMethod
-    public void afterTest() {
-        TrelloApiBuilder.params.clear();
-        TrelloApiBuilder.pathParams.clear();
-    }
-
+public class TrelloBoardJSONTests extends Hooks{
     @Test
     public void createNewBoardTest() {
-        String boardName = "Lorem ipsum board " + random(12, true, true);
+        String boardName = "Lorem ipsum board " + random(5, true, true);
         Response answer = TrelloApiBuilder.with()
-                .createName(boardName)
-                .callPostBoardApi();
+                .setName(boardName)
+                .setID(NO_ID)
+                .callPostApi(BOARDS, NO_PATH_GET);
         answer.then().specification(successResponse());
         TrelloAnswer answers = getTrelloAnswers(answer);
 
@@ -44,11 +38,12 @@ public class TrelloBoardJSONTests {
 
     @Test
     public void createNewBoardTestWithLists() {
-        String boardName = "Lorem ipsum board " + random(12, true, true);
+        String boardName = "Lorem ipsum board " + random(5, true, true);
         Response answer = TrelloApiBuilder.with()
-                .createListsforBoard()
-                .createName(boardName)
-                .callPostBoardApi();
+                .setListsForBoard()
+                .setName(boardName)
+                .setID(NO_ID)
+                .callPostApi(BOARDS, NO_PATH_GET);
         answer.then().specification(successResponse());
         TrelloAnswer answers = getTrelloAnswers(answer);
 
@@ -65,15 +60,15 @@ public class TrelloBoardJSONTests {
 
     @Test
     public void createNewBoardTestWithDescriptions() {
-        String boardName = "Lorem ipsum board " + random(12, true, true);
-        String desc = "Lorem ipsum desc " + random(12, true, true);
+        String boardName = "Lorem ipsum board " + random(5, true, true);
+        String desc = "Lorem ipsum desc " + random(5, true, true);
 
         Response answer = TrelloApiBuilder.with()
-                .createDescforBoard(desc)
-                .createName(boardName)
-                .callPostBoardApi();
+                .setDescForBoard(desc)
+                .setName(boardName)
+                .setID(NO_ID)
+                .callPostApi(BOARDS, NO_PATH_GET);
         answer.then().specification(successResponse());
-        TrelloAnswer answers = getTrelloAnswers(answer);
 
         List<TrelloAnswer> allBoard = getBoardsList();
         String descActual = "";
@@ -88,7 +83,6 @@ public class TrelloBoardJSONTests {
     public void deleteBoardTestById() {
         String id = generateBoard().id;
         int count = getBoardsList().size();
-
         RestAssured
                 .given(baseRequestConfiguration())
                 .log().everything()
@@ -100,17 +94,4 @@ public class TrelloBoardJSONTests {
         assertThat(getBoardsList().size(), equalTo(count - 1));
     }
 
-    @AfterMethod
-    public void deleteBoardTestByIdLorem() {
-        for (TrelloAnswer trelloAnswer : getBoardsList()) {
-            if (trelloAnswer.name.contains("Lorem"))
-                RestAssured
-                        .given(baseRequestConfiguration())
-                        .log().everything()
-                        .delete(BOARDS + trelloAnswer.id)
-                        .prettyPeek()
-                        .then()
-                        .specification(successResponse());
-        }
-    }
 }

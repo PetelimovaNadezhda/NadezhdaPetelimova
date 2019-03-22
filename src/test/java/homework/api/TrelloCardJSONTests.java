@@ -1,37 +1,28 @@
 package homework.api;
 
-import beans.TrelloAnswer;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import static homework.api.ConstantTrello.*;
 import static homework.api.TrelloApi.baseRequestConfiguration;
 import static homework.api.TrelloApi.successResponse;
-import static homework.api.TrelloGetMetodsApi.*;
+import static homework.api.TrelloGetAndGenerateMetodsApi.*;
 import static org.apache.commons.lang.RandomStringUtils.random;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-public class TrelloCardJSONTests {
-    @AfterMethod
-    public void afterTest() {
-        TrelloApiBuilder.params.clear();
-        TrelloApiBuilder.pathParams.clear();
-    }
-
+public class TrelloCardJSONTests extends Hooks{
     @Test
     public void createCardWithNameTest() {
         String nameCard = "Lorem ipsum card " + random(5, true, true);
         String id = generateBoard().id;
 
         Response answer = TrelloApiBuilder.with()
-                .createName(nameCard)
-                .getidList(id)
-                .callPostCardApi();
+                .setName(nameCard)
+                .setIDList(id)
+                .setID(NO_ID)
+                .callPostApi(CARDS, NO_PATH_GET);
         answer.then().specification(successResponse());
 
         assertThat(getBoardCardsByIdTest(id).size(), equalTo(1));
@@ -44,10 +35,11 @@ public class TrelloCardJSONTests {
         generateCard(id);
 
         Response answer = TrelloApiBuilder.with()
-                .createName(nameCard)
-                .getidList(id)
-                .createCardPos(POS_CARD)
-                .callPostCardApi();
+                .setName(nameCard)
+                .setIDList(id)
+                .setCardPos(POS_CARD)
+                .setID(NO_ID)
+                .callPostApi(CARDS, NO_PATH_GET);
         answer.then().specification(successResponse());
 
         assertThat(getBoardCardsByIdTest(id).get(0).name, equalTo(nameCard));
@@ -68,19 +60,5 @@ public class TrelloCardJSONTests {
                 .specification(successResponse());
 
         assertThat(getBoardCardsByIdTest(idBoard).size(), equalTo(count - 1));
-    }
-
-    @AfterMethod
-    public void deleteBoardTestByIdLorem() {
-        for (TrelloAnswer trelloAnswer : getBoardsList()) {
-            if (trelloAnswer.name.contains("Lorem"))
-                RestAssured
-                        .given(baseRequestConfiguration())
-                        .log().everything()
-                        .delete(BOARDS + trelloAnswer.id)
-                        .prettyPeek()
-                        .then()
-                        .specification(successResponse());
-        }
     }
 }
