@@ -29,8 +29,8 @@ public class TrelloApi {
     static RequestSpecification baseRequestConfiguration() {
         return new RequestSpecBuilder()
                 .setRelaxedHTTPSValidation()
-                .addQueryParam("key", "e2f7d12ed03353803f8cefdadbe0b696")
-                .addQueryParam("token", "24e04a2725169e6aa36aa2b989f1219aa1aa341c0d44a027ca8ca738b8af3f6b")
+                .addQueryParam("key", KEY)
+                .addQueryParam("token", TOKEN)
                 .setContentType("application/json")
                 .setBaseUri(TRELLO_API_URI)
                 .build();
