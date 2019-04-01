@@ -1,19 +1,26 @@
 package homework.api;
 
 import beans.TrelloAnswer;
+import beans.TrelloAnswerCard;
 import beans.TrelloAnswerList;
 import io.restassured.RestAssured;
+import io.restassured.http.Method;
 import io.restassured.response.Response;
+import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
 import static homework.api.ConstantTrello.*;
-import static homework.api.TrelloApi.*;
+import static homework.api.TrelloApi.baseRequestConfiguration;
+import static homework.api.TrelloApi.successResponse;
 import static homework.api.TrelloGetAndGenerateMetodsApi.*;
 import static org.apache.commons.lang.RandomStringUtils.random;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
+import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsCollectionContaining.hasItem;
 
 public class TrelloBoardJSONTests extends Hooks{
     @Test
@@ -22,18 +29,20 @@ public class TrelloBoardJSONTests extends Hooks{
         Response answer = TrelloApiBuilder.with()
                 .setName(boardName)
                 .setID(NO_ID)
-                .callPostApi(BOARDS, NO_PATH_GET);
+                .callApi(Method.POST, BOARDS, NO_PATH_GET);
         answer.then().specification(successResponse());
-        TrelloAnswer answers = getTrelloAnswers(answer);
 
         boolean key = false;
         List<TrelloAnswer> allBoard = getBoardsList();
+
         for (TrelloAnswer element : allBoard) {
             if (element.name.equals(boardName))
                 key = true;
         }
 
-        assertThat("Board creation", true, equalTo(key));
+        //assertThat(allBoard, hasItem(Matchers.<TrelloAnswer>hasProperty("name", is(boardName))));
+
+        assertThat("Board creation", key, is(true));
     }
 
     @Test
@@ -43,9 +52,8 @@ public class TrelloBoardJSONTests extends Hooks{
                 .setListsForBoard()
                 .setName(boardName)
                 .setID(NO_ID)
-                .callPostApi(BOARDS, NO_PATH_GET);
+                .callApi(Method.POST, BOARDS, NO_PATH_GET);
         answer.then().specification(successResponse());
-        TrelloAnswer answers = getTrelloAnswers(answer);
 
         List<TrelloAnswer> allBoard = getBoardsList();
         List<TrelloAnswerList> allLists = null;
@@ -55,7 +63,7 @@ public class TrelloBoardJSONTests extends Hooks{
             }
         }
 
-        assertThat(allLists.size(), equalTo(3));
+        assertThat(allLists, hasSize(3));
     }
 
     @Test
@@ -67,10 +75,11 @@ public class TrelloBoardJSONTests extends Hooks{
                 .setDescForBoard(desc)
                 .setName(boardName)
                 .setID(NO_ID)
-                .callPostApi(BOARDS, NO_PATH_GET);
+                .callApi(Method.POST, BOARDS, NO_PATH_GET);
         answer.then().specification(successResponse());
 
         List<TrelloAnswer> allBoard = getBoardsList();
+
         String descActual = "";
         for (TrelloAnswer element : allBoard) {
             if (element.name.equals(boardName))
@@ -91,7 +100,7 @@ public class TrelloBoardJSONTests extends Hooks{
                 .then()
                 .specification(successResponse());
 
-        assertThat(getBoardsList().size(), equalTo(count - 1));
+        assertThat(getBoardsList(), hasSize(count - 1));
     }
 
 }

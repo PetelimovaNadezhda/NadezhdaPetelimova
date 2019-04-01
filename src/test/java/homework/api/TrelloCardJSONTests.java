@@ -1,6 +1,7 @@
 package homework.api;
 
 import io.restassured.RestAssured;
+import io.restassured.http.Method;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
@@ -11,8 +12,9 @@ import static homework.api.TrelloGetAndGenerateMetodsApi.*;
 import static org.apache.commons.lang.RandomStringUtils.random;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.hasSize;
 
-public class TrelloCardJSONTests extends Hooks{
+public class TrelloCardJSONTests extends Hooks {
     @Test
     public void createCardWithNameTest() {
         String nameCard = "Lorem ipsum card " + random(5, true, true);
@@ -22,10 +24,10 @@ public class TrelloCardJSONTests extends Hooks{
                 .setName(nameCard)
                 .setIDList(id)
                 .setID(NO_ID)
-                .callPostApi(CARDS, NO_PATH_GET);
+                .callApi(Method.POST, CARDS, NO_PATH_GET);
         answer.then().specification(successResponse());
 
-        assertThat(getBoardCardsByIdTest(id).size(), equalTo(1));
+        assertThat(getBoardCardsByIdTest(id), hasSize(1));
     }
 
     @Test
@@ -39,7 +41,7 @@ public class TrelloCardJSONTests extends Hooks{
                 .setIDList(id)
                 .setCardPos(POS_CARD)
                 .setID(NO_ID)
-                .callPostApi(CARDS, NO_PATH_GET);
+                .callApi(Method.POST, CARDS, NO_PATH_GET);
         answer.then().specification(successResponse());
 
         assertThat(getBoardCardsByIdTest(id).get(0).name, equalTo(nameCard));
@@ -59,6 +61,6 @@ public class TrelloCardJSONTests extends Hooks{
                 .then()
                 .specification(successResponse());
 
-        assertThat(getBoardCardsByIdTest(idBoard).size(), equalTo(count - 1));
+        assertThat(getBoardCardsByIdTest(idBoard), hasSize(count - 1));
     }
 }

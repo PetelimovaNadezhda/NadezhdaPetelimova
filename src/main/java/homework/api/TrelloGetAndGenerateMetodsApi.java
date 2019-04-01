@@ -4,6 +4,8 @@ import beans.TrelloAnswer;
 import beans.TrelloAnswerCard;
 import beans.TrelloAnswerChecklist;
 import beans.TrelloAnswerList;
+import com.google.gson.reflect.TypeToken;
+import io.restassured.http.Method;
 import io.restassured.response.Response;
 
 import java.util.List;
@@ -14,35 +16,39 @@ import static org.apache.commons.lang.RandomStringUtils.random;
 
 class TrelloGetAndGenerateMetodsApi {
     static List<TrelloAnswer> getBoardsList() {
-        Response answer =TrelloApiBuilder.with()
+        Response answer = TrelloApiBuilder.with()
                 .setID(NO_ID)
-                .callGetApi(MY_BOARDS, NO_PATH_GET);
+                .callApi(Method.GET, MY_BOARDS, NO_PATH_GET);
         answer.then().specification(successResponse());
-        return getListTrelloAnswers(answer);
+        return deserializeResponse(answer, new TypeToken<List<TrelloAnswer>>() {
+        }.getType());
     }
 
     static List<TrelloAnswerList> getBoardListsByIdTest(String id) {
         Response answer = TrelloApiBuilder.with()
                 .setID(id)
-                .callGetApi(BOARDS, LISTS);
+                .callApi(Method.GET, BOARDS, LISTS);
         answer.then().specification(successResponse());
-        return getListTrelloAnswersList(answer);
+        return deserializeResponse(answer, new TypeToken<List<TrelloAnswerList>>() {
+        }.getType());
     }
 
     static List<TrelloAnswerCard> getBoardCardsByIdTest(String id) {
         Response answer = TrelloApiBuilder.with()
                 .setID(id)
-                .callGetApi(BOARDS, "/cards");
+                .callApi(Method.GET, BOARDS, "/cards");
         answer.then().specification(successResponse());
-        return getListTrelloAnswersCard(answer);
+        return deserializeResponse(answer, new TypeToken<List<TrelloAnswerCard>>() {
+        }.getType());
     }
 
     static List<TrelloAnswerChecklist> getChecklists(String idCard) {
         Response answer = TrelloApiBuilder.with()
                 .setID(idCard)
-                .callGetApi(CARDS, "/checklists");
+                .callApi(Method.GET, CARDS, "/checklists");
         answer.then().specification(successResponse());
-        return getListTrelloAnswersChecklist(answer);
+        return deserializeResponse(answer, new TypeToken<List<TrelloAnswerChecklist>>() {
+        }.getType());
     }
 
     static TrelloAnswer generateBoard() {
@@ -51,8 +57,8 @@ class TrelloGetAndGenerateMetodsApi {
                 .setListsForBoard()
                 .setName(boardName)
                 .setID(NO_ID)
-                .callPostApi(BOARDS, NO_PATH_GET);
-        return getTrelloAnswers(answer);
+                .callApi(Method.POST, BOARDS, NO_PATH_GET);
+        return deserializeResponse(answer, TrelloAnswer.class);
     }
 
     static TrelloAnswerCard generateCard(String id) {
@@ -62,19 +68,18 @@ class TrelloGetAndGenerateMetodsApi {
                 .setName(nameCard)
                 .setIDList(id)
                 .setID(NO_ID)
-                .callPostApi(CARDS, NO_PATH_GET);
+                .callApi(Method.POST, CARDS, NO_PATH_GET);
         answer.then().specification(successResponse());
-
-        return getTrelloAnswersCard(answer);
+        return deserializeResponse(answer, TrelloAnswerCard.class);
     }
 
     static TrelloAnswerChecklist generateChecklist(String idCard) {
         Response answer = TrelloApiBuilder.with()
                 .setIDCard(idCard)
                 .setID(NO_ID)
-                .callPostApi(CHECKLISTS, NO_PATH_GET);
+                .callApi(Method.POST, CHECKLISTS, NO_PATH_GET);
         answer.then().specification(successResponse());
-        return getTrelloAnswersChecklist(answer);
+        return deserializeResponse(answer, TrelloAnswerChecklist.class);
     }
 }
 

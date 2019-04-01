@@ -1,6 +1,7 @@
 package homework.api;
 
 import io.restassured.RestAssured;
+import io.restassured.http.Method;
 import io.restassured.response.Response;
 
 import java.util.HashMap;
@@ -57,21 +58,12 @@ public class TrelloApiBuilder {
             return this;
         }
 
-        Response callGetApi(String entities, String get) {
+        Response callApi(Method method, String entities, String get) {
             return RestAssured.given(baseRequestConfiguration()).with()
                     .queryParams(params)
                     .pathParams(pathParams)
                     .log().all()
-                    .get(entities + "{id}" + get)
-                    .prettyPeek();
-        }
-
-        Response callPostApi(String entities, String get) {
-            return RestAssured.given(baseRequestConfiguration()).with()
-                    .queryParams(params)
-                    .pathParams(pathParams)
-                    .log().all()
-                    .post(entities + "{id}" + get)
+                    .request(method, entities + "{id}" + get)
                     .prettyPeek();
         }
     }
